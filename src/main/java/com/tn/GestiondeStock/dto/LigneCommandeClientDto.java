@@ -1,7 +1,6 @@
-package com.tn.GestiondeStock.entities.dto;
+package com.tn.GestiondeStock.dto;
 
 import java.math.BigDecimal;
-
 import lombok.Builder;
 import lombok.Data;
 
@@ -10,13 +9,13 @@ import lombok.Data;
 @Data
 
 
-public class LigneCommandeFournisseurDto {
+public class LigneCommandeClientDto {
 
 	private Integer id;
 
 	private ArticleDto article;
 	
-	private CommandeFournisseurDto commandeFournisseur;
+	private CommandeClientDto commandeClient;
 	
 	private BigDecimal quantite;
 	

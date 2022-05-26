@@ -1,5 +1,6 @@
-package com.tn.GestiondeStock.entities.dto;
+package com.tn.GestiondeStock.dto;
 
+import java.util.Date;
 import java.util.List;
 
 import lombok.Builder;
@@ -10,19 +11,21 @@ import lombok.Data;
 @Data
 
 
-public class FournisseurDto {
-	
+public class UtilisateurDto {
+
 	private Integer id;
 
 	private String nom;
 	
 	private String prenom;
 	
-	private String photo;
-	
 	private String mail;
 	
-	private String numTel;
+	private Date dateDeNaissance;
+	
+	private String MotDePasse;
+	
+	private String photo;
 	
 	private String adresse;
 	
@@ -32,6 +35,7 @@ public class FournisseurDto {
 	
 	private String pays;
 	
-	private List<CommandeFournisseurDto> commandeFournisseurs;
+	private EntrepriseDto entreprise;
 	
+	private List<RoleDto> roles;
 }

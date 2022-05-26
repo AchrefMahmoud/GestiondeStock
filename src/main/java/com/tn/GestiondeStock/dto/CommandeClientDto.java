@@ -1,4 +1,4 @@
-package com.tn.GestiondeStock.entities.dto;
+package com.tn.GestiondeStock.dto;
 
 import java.util.Date;
 import java.util.List;
