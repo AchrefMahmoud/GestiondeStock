@@ -3,6 +3,8 @@ package com.tn.GestiondeStock.dto;
 import java.util.Date;
 import java.util.List;
 
+import com.tn.GestiondeStock.entities.CommandeClient;
+
 import lombok.Builder;
 import lombok.Data;
 
@@ -22,4 +24,36 @@ public class CommandeClientDto {
 	private ClientDto client;
 	
 	private List<LigneCommandeClientDto> LigneCommandeClients;
+	
+	
+	public static CommandeClientDto fromEntity(CommandeClient commandeClient) {
+		if (commandeClient == null) {
+			return null;
+			//TODO throw an exception 
+		}
+		
+
+		return CommandeClientDto.builder()
+				.id(commandeClient.getId())
+				.code(commandeClient.getCode())
+				.dateCommande(commandeClient.getDateCommande())
+				.client(ClientDto.fromEntity(commandeClient.getClient()))
+				.build();
+	}
+		
+		
+		
+	public CommandeClient toEntity(CommandeClientDto commandeClientDto) {
+		if (commandeClientDto == null) {
+			return null;
+			//TODO throw an exception 
+		}
+		
+		CommandeClient commandeClient = new CommandeClient();
+		commandeClient.setId(commandeClient.getId());
+		commandeClient.setCode(commandeClient.getCode());
+		commandeClient.setDateCommande(commandeClient.getDateCommande());
+
+		return commandeClient;
+	}
 }

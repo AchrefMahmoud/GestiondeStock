@@ -3,11 +3,7 @@ package com.tn.GestiondeStock.dto;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-import com.tn.GestiondeStock.entities.Article;
+import com.tn.GestiondeStock.entities.MouvementStock;
 import com.tn.GestiondeStock.entities.TypeMvtStock;
 
 import lombok.Builder;
@@ -30,4 +26,33 @@ public class MouvementStockDto {
 	
 	private TypeMvtStock typemvt;
 	
+	
+	
+	public static MouvementStockDto fromEntity(MouvementStock mouvementStock) {
+		if (mouvementStock == null) {
+			return null;
+	}
+	
+		return MouvementStockDto.builder()
+				.id(mouvementStock.getId())
+				.dateMvt(mouvementStock.getDateMvt())
+				.quantite(mouvementStock.getQuantite())
+				.article(ArticleDto.fromEntity(mouvementStock.getArticle()))
+				.build();
+	}
+	
+	
+	public MouvementStock toEntity(MouvementStockDto mouvementStockDto) {
+		if (mouvementStockDto == null) {
+			return null;
+			//TODO throw an exception 
+		}
+		MouvementStock mouvementStock = new MouvementStock();
+		mouvementStock.setId(mouvementStockDto.getId());
+		mouvementStock.setDateMvt(mouvementStockDto.getDateMvt());
+		mouvementStock.setQuantite(mouvementStockDto.getQuantite());
+
+		
+		return mouvementStock;
+	}
 }

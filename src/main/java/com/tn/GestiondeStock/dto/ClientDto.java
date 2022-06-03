@@ -1,6 +1,10 @@
 package com.tn.GestiondeStock.dto;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.tn.GestiondeStock.entities.Client;
 
 import lombok.Builder;
 import lombok.Data;
@@ -32,5 +36,59 @@ public class ClientDto {
 	
 	private String pays;
 	
+	@JsonIgnore
 	private List<CommandeClientDto> commandeClients;
+	
+	
+	
+	public static ClientDto fromEntity(Client client) {
+		if (client == null) {
+			return null;
+			//TODO throw an exception 
+		}
+		
+
+		return ClientDto.builder()
+				.id(client.getId())
+				.nom(client.getNom())
+				.prenom(client.getPrenom())
+				.photo(client.getPhoto())
+				.mail(client.getMail())
+				.numTel(client.getNumTel())
+				.adresse(client.getAdresse())
+				.ville(client.getVille())
+				.codePostale(client.getCodePostale())
+				.pays(client.getPays())
+				.commandeClients(
+						client.getCommandeClients() != null ?
+								client.getCommandeClients().stream()
+								.map(CommandeClientDto::fromEntity)
+								.collect(Collectors.toList()) : null
+								)
+				.build();
 }
+	
+	
+	public Client toEntity(ClientDto clientDto) {
+		if (clientDto == null) {
+			return null;
+			//TODO throw an exception 
+		}
+		
+		Client client = new Client();
+		client.setId(clientDto.getId());
+		client.setNom(clientDto.getNom());
+		client.setPrenom(clientDto.getPrenom());
+		client.setPhoto(clientDto.getPhoto());
+		client.setMail(clientDto.getMail());
+		client.setNumTel(clientDto.getNumTel());
+		client.setAdresse(clientDto.getAdresse());
+		client.setVille(clientDto.getVille());
+		client.setCodePostale(clientDto.getCodePostale());
+		client.setPays(clientDto.getPays());
+		
+		return client;
+		
+}
+}
+
