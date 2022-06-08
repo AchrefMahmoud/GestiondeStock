@@ -69,7 +69,7 @@ public class ClientDto {
 }
 	
 	
-	public Client toEntity(ClientDto clientDto) {
+	public static Client toEntity(ClientDto clientDto) {
 		if (clientDto == null) {
 			return null;
 			//TODO throw an exception 

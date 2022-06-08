@@ -77,7 +77,7 @@ public class UtilisateurDto {
 	
 	
 	
-	public Utilisateur toEntity(UtilisateurDto utilisateurDto) {
+	public static Utilisateur toEntity(UtilisateurDto utilisateurDto) {
 		if (utilisateurDto == null) {
 			return null;
 			//TODO throw an exception 

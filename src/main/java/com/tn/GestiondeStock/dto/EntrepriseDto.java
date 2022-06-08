@@ -61,7 +61,7 @@ public class EntrepriseDto {
 			.build();
 }
 
-	public Entreprise toEntity(EntrepriseDto entrepriseDto) {
+	public static Entreprise toEntity(EntrepriseDto entrepriseDto) {
 		if (entrepriseDto == null) {
 			return null;
 			//TODO throw an exception 

@@ -41,7 +41,7 @@ public class CategoryDto {
 	
 //CategoryDto --> Category
 		
-		public Category toEntity(CategoryDto categoryDto) {
+		public static Category toEntity(CategoryDto categoryDto) {
 			if (categoryDto == null) {
 				return null;
 				//TODO throw an exception 
