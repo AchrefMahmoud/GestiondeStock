@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.tn.GestiondeStock.entities.CommandeClient;
 
 
-public interface CommandeClientRepository extends JpaRepository<Integer, CommandeClient>{
+public interface CommandeClientRepository extends JpaRepository<CommandeClient, Integer>{
 
 }

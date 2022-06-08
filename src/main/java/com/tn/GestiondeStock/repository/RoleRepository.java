@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.tn.GestiondeStock.entities.Role;
 
-public interface RoleRepository extends JpaRepository<Integer, Role> {
+public interface RoleRepository extends JpaRepository<Role, Integer> {
 
 }

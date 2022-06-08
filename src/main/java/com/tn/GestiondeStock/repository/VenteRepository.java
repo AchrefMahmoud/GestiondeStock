@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.tn.GestiondeStock.entities.Vente;
 
-public interface VenteRepository extends JpaRepository<Integer, Vente> {
+public interface VenteRepository extends JpaRepository<Vente, Integer> {
 
 }

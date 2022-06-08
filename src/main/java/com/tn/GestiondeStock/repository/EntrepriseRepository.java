@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.tn.GestiondeStock.entities.Entreprise;
 
 
-public interface EntrepriseRepository extends JpaRepository<Integer, Entreprise> {
+public interface EntrepriseRepository extends JpaRepository<Entreprise, Integer> {
 
 }

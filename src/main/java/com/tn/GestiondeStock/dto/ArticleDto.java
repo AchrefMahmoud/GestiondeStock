@@ -50,7 +50,7 @@ public class ArticleDto {
 	}
 	
 	
-	public Article toEntity(ArticleDto articleDto) {
+	public static Article toEntity(ArticleDto articleDto) {
 		if (articleDto == null) {
 			return null;
 			//TODO throw an exception 
