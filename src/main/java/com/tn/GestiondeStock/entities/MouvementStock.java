@@ -38,6 +38,6 @@ public class MouvementStock extends AbstractEntity {
 	@Column(name = "typemvt")
 	private TypeMvtStock typemvt;
 	
-	//@Column (name = "identreprise")
-	//private Integer idEntreprise;
+	@Column (name = "identreprise")
+	private Integer idEntreprise;
 }

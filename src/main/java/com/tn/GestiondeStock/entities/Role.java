@@ -24,11 +24,10 @@ public class Role extends AbstractEntity {
 	@Column(name = "rolename")
 	private String roleNom;
 	
-	//@Column (name = "identreprise")
-	//private Integer idEntreprise;
-	
 	@ManyToOne
 	@JoinColumn(name = "idutilisateur")
 	private Utilisateur utilisateur;
 	
+	@Column (name = "identreprise")
+	private Integer idEntreprise;
 }
