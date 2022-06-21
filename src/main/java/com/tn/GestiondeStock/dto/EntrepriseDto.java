@@ -32,8 +32,7 @@ public class EntrepriseDto {
 	
 	private String numTel;
 	
-	private String siteWeb;
-	
+	private String siteWeb;	
 	
 	private List<UtilisateurDto> utilisateurs;
 

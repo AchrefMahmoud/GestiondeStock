@@ -36,6 +36,8 @@ public class ClientDto {
 	
 	private String pays;
 	
+	private Integer idEntreprise;
+	
 	@JsonIgnore
 	private List<CommandeClientDto> commandeClients;
 	
@@ -59,6 +61,7 @@ public class ClientDto {
 				.ville(client.getVille())
 				.codePostale(client.getCodePostale())
 				.pays(client.getPays())
+				.idEntreprise(client.getIdEntreprise())
 				.commandeClients(
 						client.getCommandeClients() != null ?
 								client.getCommandeClients().stream()
@@ -86,6 +89,7 @@ public class ClientDto {
 		client.setVille(clientDto.getVille());
 		client.setCodePostale(clientDto.getCodePostale());
 		client.setPays(clientDto.getPays());
+		client.setIdEntreprise(clientDto.getIdEntreprise());
 		
 		return client;
 		

@@ -2,6 +2,8 @@ package com.tn.GestiondeStock.dto;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import com.tn.GestiondeStock.entities.LigneCommandeClient;
 
 import lombok.Builder;
@@ -18,13 +20,15 @@ public class LigneCommandeClientDto {
 
 	private ArticleDto article;
 	
+	@JsonIgnore
 	private CommandeClientDto commandeClient;
 	
 	private BigDecimal quantite;
 	
 	private BigDecimal prixUnitaire;
 	
-	
+	private Integer idEntreprise;
+
 	public static LigneCommandeClientDto fromEntity(LigneCommandeClient ligneCommandeClient) {
 		if (ligneCommandeClient == null) {
 			return null;
@@ -36,12 +40,13 @@ public class LigneCommandeClientDto {
 			.commandeClient(CommandeClientDto.fromEntity(ligneCommandeClient.getCommandeClient()))
 			.quantite(ligneCommandeClient.getQuantite())	
 			.prixUnitaire(ligneCommandeClient.getPrixUnitaire())	
+			.idEntreprise(ligneCommandeClient.getIdEntreprise())
 
 			.build();
 	}
 	
 	
-	public LigneCommandeClient toEntity(LigneCommandeClientDto ligneCommandeClientDto) {
+	public static LigneCommandeClient toEntity(LigneCommandeClientDto ligneCommandeClientDto) {
 		if (ligneCommandeClientDto == null) {
 			return null;
 			//TODO throw an exception 
@@ -50,6 +55,7 @@ public class LigneCommandeClientDto {
 		ligneCommandeClient.setId(ligneCommandeClientDto.getId());
 		ligneCommandeClient.setQuantite(ligneCommandeClientDto.getQuantite());
 		ligneCommandeClient.setPrixUnitaire(ligneCommandeClientDto.getPrixUnitaire());
+		ligneCommandeClient.setIdEntreprise(null);
 
 		return ligneCommandeClient;
 	}

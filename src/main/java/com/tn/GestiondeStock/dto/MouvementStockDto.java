@@ -26,7 +26,7 @@ public class MouvementStockDto {
 	
 	private TypeMvtStock typemvt;
 	
-	
+	private Integer idEntreprise;
 	
 	public static MouvementStockDto fromEntity(MouvementStock mouvementStock) {
 		if (mouvementStock == null) {
@@ -37,6 +37,7 @@ public class MouvementStockDto {
 				.id(mouvementStock.getId())
 				.dateMvt(mouvementStock.getDateMvt())
 				.quantite(mouvementStock.getQuantite())
+				.idEntreprise(mouvementStock.getIdEntreprise())
 				.article(ArticleDto.fromEntity(mouvementStock.getArticle()))
 				.build();
 	}
@@ -51,6 +52,7 @@ public class MouvementStockDto {
 		mouvementStock.setId(mouvementStockDto.getId());
 		mouvementStock.setDateMvt(mouvementStockDto.getDateMvt());
 		mouvementStock.setQuantite(mouvementStockDto.getQuantite());
+		mouvementStock.setIdEntreprise(mouvementStockDto.getIdEntreprise());
 
 		
 		return mouvementStock;

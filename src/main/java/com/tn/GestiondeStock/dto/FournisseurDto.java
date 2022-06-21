@@ -35,6 +35,8 @@ public class FournisseurDto {
 	
 	private String pays;
 	
+	private Integer idEntreprise;
+	
 	private List<CommandeFournisseurDto> commandeFournisseurs;
 	
 	
@@ -57,6 +59,7 @@ public class FournisseurDto {
 				.ville(fournisseur.getVille())
 				.codePostale(fournisseur.getCodePostale())
 				.pays(fournisseur.getPays())
+				.idEntreprise(fournisseur.getIdEntreprise())
 				.commandeFournisseurs(
 						fournisseur.getCommandeFournisseurs() != null ?
 								fournisseur.getCommandeFournisseurs().stream()
@@ -82,6 +85,7 @@ public class FournisseurDto {
 		fournisseur.setAdresse(fournisseurDto.getAdresse());
 		fournisseur.setVille(fournisseurDto.getVille());
 		fournisseur.setCodePostale(fournisseurDto.getCodePostale());
+		fournisseur.setIdEntreprise(fournisseurDto.getIdEntreprise());
 
 		return fournisseur;
 	}
