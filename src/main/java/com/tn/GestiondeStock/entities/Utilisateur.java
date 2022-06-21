@@ -55,8 +55,8 @@ public class Utilisateur extends AbstractEntity {
 	@Column(name = "pays")
 	private String pays;
 	
-	@Column (name = "identreprise")
-	private Integer idEntreprise;
+	//@Column (name = "identreprise")
+	//private Integer idEntreprise;
 	
 	@ManyToOne
 	@JoinColumn(name = "identreprise")
