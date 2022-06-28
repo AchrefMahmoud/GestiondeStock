@@ -15,11 +15,13 @@ public class LigneVenteDto {
 
 	private Integer id;
 
-	private VenteDto vente;
+	private VentesDto vente;
 	
 	private BigDecimal quantite;
 	
 	private BigDecimal prixUnitaire;
+	
+	private ArticleDto article;
 	
 	private Integer idEntreprise;
 	
@@ -33,13 +35,13 @@ public class LigneVenteDto {
 			.quantite(ligneVente.getQuantite())
 			.prixUnitaire(ligneVente.getPrixUnitaire())
 			.idEntreprise(ligneVente.getIdEntreprise())
-			.vente(VenteDto.fromEntity(ligneVente.getVente()))
+			.vente(VentesDto.fromEntity(ligneVente.getVentes()))
 			.build();
 	}
 	
 	
 	
-	public LigneVente toEntity(LigneVenteDto ligneVenteDto) {
+	public static LigneVente toEntity(LigneVenteDto ligneVenteDto) {
 		if (ligneVenteDto == null) {
 			return null;
 			//TODO throw an exception 

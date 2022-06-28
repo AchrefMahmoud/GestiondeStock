@@ -1,9 +1,12 @@
 package com.tn.GestiondeStock.entities;
 
+
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -19,12 +22,12 @@ import lombok.NoArgsConstructor;
 @Table(name = "Vente")
 
 
-public class Vente extends AbstractEntity {
+public class Ventes extends AbstractEntity {
 
 	@Column(name = "code")
 	private String Code;
 	
-	@Column(name = "datevente")
+	@Column(name = "dateVente")
 	private Date dateVente;
 	
 	@Column(name = "commentaire")
@@ -32,4 +35,7 @@ public class Vente extends AbstractEntity {
 	
 	@Column (name = "identreprise")
 	private Integer idEntreprise;
+	
+	@OneToMany(mappedBy = "ventes")
+	private List<LigneVente> ligneVentes;
 }

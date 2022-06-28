@@ -23,8 +23,8 @@ import lombok.NoArgsConstructor;
 public class LigneVente extends AbstractEntity {
 
 	@ManyToOne
-	@JoinColumn(name = "idvente")
-	private Vente vente;
+	@JoinColumn(name = "idventes")
+	private Ventes ventes;
 	
 	@Column(name = "quantite")
 	private BigDecimal quantite;
