@@ -1,0 +1,27 @@
+{"properties": [
+  {
+    "name": "flickr",
+    "type": "java.lang.String",
+    "description": "A description for 'flickr'"
+  },
+  {
+    "name": "apiKey",
+    "type": "java.lang.String",
+    "description": "A description for 'apiKey'"
+  },
+  {
+    "name": "apiSecret",
+    "type": "java.lang.String",
+    "description": "A description for 'apiSecret'"
+  },
+  {
+    "name": "apiSecret",
+    "type": "java.lang.String",
+    "description": "A description for 'apiSecret'"
+  },
+  {
+    "name": "apiSecret",
+    "type": "java.lang.String",
+    "description": "A description for 'apiSecret'"
+  }
+]}
