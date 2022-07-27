@@ -47,14 +47,14 @@ public interface ArticleApi {
 	ArticleDto findByCodeArticle (@PathVariable("codeArticle") String codeArticle);
 
 	@GetMapping(value = APP_ROOT + "/articles/all", produces = MediaType.APPLICATION_JSON_VALUE)
-	@ApiOperation(value = "Renvoir la listes des articles", notes = "Cette methode permet de chercher et renvoiyer la liste des articlesexistent dans la BDD", responseContainer = "List<ArticleDto>")
+	@ApiOperation(value = "Renvoir la listes des articles", notes = "Cette methode permet de chercher et renvoiyer la liste des articles existent dans la BDD", responseContainer = "List<ArticleDto>")
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "La liste des articles / Une liste vide"),
 			})
 	List<ArticleDto> findAll();
 	
 	@DeleteMapping(value = APP_ROOT + "/articles/delete/{idArticle}")
-	@ApiOperation(value = "Supprimer un article par CODE", notes = "Cette methode permet de spprimer un article par son ID", response = ArticleDto.class)
+	@ApiOperation(value = "Supprimer un article par CODE", notes = "Cette methode permet de spprimer un article par son ID")
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "L'article a ete supprimer"),
 	})
