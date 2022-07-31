@@ -1,6 +1,5 @@
 package com.tn.GestiondeStock.controller.api;
 
-import com.tn.GestiondeStock.dto.CategoryDto;
 import com.tn.GestiondeStock.dto.ClientDto;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
