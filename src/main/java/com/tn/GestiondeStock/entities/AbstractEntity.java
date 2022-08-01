@@ -9,9 +9,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.Builder;
 import lombok.Data;
-import sun.util.calendar.BaseCalendar;
 
 
 @Data
@@ -23,22 +21,12 @@ public class AbstractEntity implements Serializable {
 	@GeneratedValue
 	private Integer id;
 	
-	//@CreatedDate
-	@Column(name = "creationDate")
+	@CreatedDate
+	@Column(name = "creationDate", nullable = false, updatable = false)
 	private Instant creationDate;
 	
-	//@LastModifiedDate
+	@LastModifiedDate
 	@Column(name = "lastModifiedDate")
 	private Instant lastModifiedDate;
 
-
-	@PrePersist
-	void prePersist() {
-		creationDate = Instant.now();
-	}
-
-	@PreUpdate
-	void preUpdate() {
-		lastModifiedDate = Instant.now();
-	}
 }

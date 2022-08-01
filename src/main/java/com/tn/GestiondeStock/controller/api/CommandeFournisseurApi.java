@@ -2,10 +2,7 @@ package com.tn.GestiondeStock.controller.api;
 
 import com.tn.GestiondeStock.dto.CommandeFournisseurDto;
 import io.swagger.annotations.Api;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,10 +15,10 @@ public interface CommandeFournisseurApi {
     @PostMapping(COMMANDE_FOURNISSEUR_ENDPOINT + "/create")
     CommandeFournisseurDto save (@RequestBody CommandeFournisseurDto dto);
 
-    @PostMapping(COMMANDE_FOURNISSEUR_ENDPOINT + "/{idCommandeFournisseur}")
+    @GetMapping(COMMANDE_FOURNISSEUR_ENDPOINT + "/{idCommandeFournisseur}")
     CommandeFournisseurDto findById (@PathVariable("idCommandeFournisseur") Integer id);
 
-    @PostMapping(COMMANDE_FOURNISSEUR_ENDPOINT + "/{codeCommandeFoutnisseur}")
+    @GetMapping(COMMANDE_FOURNISSEUR_ENDPOINT + "/{codeCommandeFoutnisseur}")
     CommandeFournisseurDto findByCode (@PathVariable("codeCommandeFoutnisseur") String code);
 
     @PostMapping(COMMANDE_FOURNISSEUR_ENDPOINT + "/all")
