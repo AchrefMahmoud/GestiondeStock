@@ -60,10 +60,9 @@ public class ClientServiceImpl implements ClientService {
 	
 	@Override
 	public List<ClientDto> findAll() {
-		 clientRepository.findAll().stream()
+		return clientRepository.findAll().stream()
 		 .map(ClientDto::fromEntity)
 		 .collect(Collectors.toList());
-		return null;
 	}
 
 	

@@ -77,10 +77,9 @@ public class CategoryServiceImpl implements CategoryService {
 	
 	@Override
 	public List<CategoryDto> findAll() {
-		 categoryRepository.findAll().stream()
+		return categoryRepository.findAll().stream()
 		 .map(CategoryDto::fromEntity)
 		 .collect(Collectors.toList());
-		return null;
 	}
 	
 	

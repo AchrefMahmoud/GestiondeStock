@@ -58,10 +58,9 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	
 	@Override
 	public List<UtilisateurDto> findAll() {
-		utilisateurRepository.findAll().stream()
+		return utilisateurRepository.findAll().stream()
 		 .map(UtilisateurDto::fromEntity)
 		 .collect(Collectors.toList());
-		return null;
 	}
 
 	

@@ -58,10 +58,9 @@ public class FournisseurServiceImpl implements FournisseurService {
 	
 	@Override
 	public List<FournisseurDto> findAll() {
-		fournisseurRepository.findAll().stream()
+		return fournisseurRepository.findAll().stream()
 		 .map(FournisseurDto::fromEntity)
 		 .collect(Collectors.toList());
-		return null;
 	}
 
 	

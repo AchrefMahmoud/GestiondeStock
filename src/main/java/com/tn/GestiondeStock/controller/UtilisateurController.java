@@ -1,5 +1,6 @@
-package com.tn.GestiondeStock.controller.api;
+package com.tn.GestiondeStock.controller;
 
+import com.tn.GestiondeStock.controller.api.UtilisateurApi;
 import com.tn.GestiondeStock.dto.UtilisateurDto;
 import com.tn.GestiondeStock.services.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;

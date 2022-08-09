@@ -106,10 +106,9 @@ public class VentesServiceImpl implements VentesService {
 
     @Override
     public List<VentesDto> findAll() {
-        ventesRepository.findAll().stream()
+        return ventesRepository.findAll().stream()
                 .map(VentesDto::fromEntity)
                 .collect(Collectors.toList());
-        return null;
     }
 
 

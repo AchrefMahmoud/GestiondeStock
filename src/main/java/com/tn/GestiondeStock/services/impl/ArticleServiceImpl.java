@@ -81,10 +81,9 @@ public class ArticleServiceImpl implements ArticleService {
 	
 	@Override
 	public List<ArticleDto> findAll() {
-		 articleRepository.findAll().stream()
+		return articleRepository.findAll().stream()
 		 .map(ArticleDto::fromEntity)
 		 .collect(Collectors.toList());
-		return null;
 	}
 
 	
