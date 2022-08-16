@@ -1,6 +1,5 @@
 package com.tn.GestiondeStock.controller.api;
 
-import static com.tn.GestiondeStock.utils.Constants.FOURNISSEUR_ENDPOINT;
 import static com.tn.GestiondeStock.utils.Constants.UTILISATEUR_ENDPOINT;
 
 import com.tn.GestiondeStock.dto.UtilisateurDto;

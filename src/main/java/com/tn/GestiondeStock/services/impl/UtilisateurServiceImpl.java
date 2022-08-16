@@ -73,4 +73,14 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		utilisateurRepository.deleteById(id);
 	}
 
+	@Override
+	public UtilisateurDto findByMail(String mail) {
+		return utilisateurRepository.findUtilisateurByMail(mail)
+				.map(UtilisateurDto::fromEntity)
+				.orElseThrow(() -> new EntityNotFoundException(
+						"Aucun utilisateur avec l'email = " + mail + "n'ete trouve dans la BDD",
+				ErrorCodes.UTILISATEUR_NOT_FOUND)
+		);
+	}
+
 }
