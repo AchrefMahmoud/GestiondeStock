@@ -33,7 +33,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
-                .authorizeRequests().antMatchers("/**/auth/authenticate",
+                .authorizeRequests().antMatchers("/**/authenticate/","/**/auth/authenticate",
+                "/gestiondestock/v1/auth/authenticate",
+                        "../authenticate/**",
                         "/**/entreprises/create",
                         "/v2/api-docs",
                         "/swagger-resources",
@@ -52,7 +54,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
     @Bean
-    public AuthenticationManager authenticationManagerBean() throws Exception {
+    public AuthenticationManager customAuthenticationManager() throws Exception {
         return authenticationManager();
     }
 

@@ -51,12 +51,13 @@ public class EntrepriseDto {
 			.photo(entreprise.getPhoto())
 			.siteWeb(entreprise.getSiteWeb())
 			.adresse(entreprise.getAdresse())
-			.utilisateurs(
+			.numTel(entreprise.getNumTel())
+			/*.utilisateurs(
 					entreprise.getUtilisateurs() != null ?
 							entreprise.getUtilisateurs().stream()
 							.map(UtilisateurDto::fromEntity)
 							.collect(Collectors.toList()) : null
-							)			
+							)		*/
 			.build();
 }
 
@@ -75,6 +76,7 @@ public class EntrepriseDto {
 		entreprise.setPhoto(entrepriseDto.getPhoto());
 		entreprise.setSiteWeb(entrepriseDto.getSiteWeb());
 		entreprise.setAdresse(entrepriseDto.getAdresse());
+		entreprise.setNumTel(entrepriseDto.getNumTel());
 
 		return entreprise;
 	}

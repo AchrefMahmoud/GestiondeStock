@@ -29,13 +29,13 @@ public class RoleDto {
 		return RoleDto.builder()
 				.id(role.getId())
 				.roleNom(role.getRoleNom())
-				.utilisateur(UtilisateurDto.fromEntity(role.getUtilisateur()))
+				//.utilisateur(UtilisateurDto.fromEntity(role.getUtilisateur()))
 				.build();
 	}
 	
 	
 				
-	public Role toEntity(RoleDto roleDto) {
+	public static Role toEntity(RoleDto roleDto) {
 		if (roleDto == null) {
 			return null;
 			//TODO throw an exception 

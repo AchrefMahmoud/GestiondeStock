@@ -1,10 +1,13 @@
 package com.tn.GestiondeStock.dto;
 
 import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tn.GestiondeStock.entities.CommandeClient;
 
+import com.tn.GestiondeStock.entities.EtatCommande;
 import lombok.Builder;
 import lombok.Data;
 
@@ -20,11 +23,14 @@ public class CommandeClientDto {
 	private String code;
 	
 	private Date dateCommande;
+
+	private EtatCommande etatCommande;
 	
 	private ClientDto client;
 	
 	private Integer idEntreprise;
-	
+
+	@JsonIgnore
 	private List<LigneCommandeClientDto> LigneCommandeClients;
 	
 	public static CommandeClientDto fromEntity(CommandeClient commandeClient) {
@@ -38,6 +44,7 @@ public class CommandeClientDto {
 				.id(commandeClient.getId())
 				.code(commandeClient.getCode())
 				.dateCommande(commandeClient.getDateCommande())
+				.etatCommande((commandeClient.getEtatCommande()))
 				.idEntreprise(commandeClient.getIdEntreprise())
 				.client(ClientDto.fromEntity(commandeClient.getClient()))
 				.build();
@@ -54,9 +61,14 @@ public class CommandeClientDto {
 		CommandeClient commandeClient = new CommandeClient();
 		commandeClient.setId(commandeClient.getId());
 		commandeClient.setCode(commandeClient.getCode());
-		commandeClient.setIdEntreprise(commandeClient.getIdEntreprise());
-		commandeClient.setDateCommande(commandeClient.getDateCommande());
+		commandeClient.setIdEntreprise(commandeClientDto.getIdEntreprise());
+		commandeClient.setDateCommande(commandeClientDto.getDateCommande());
+		commandeClient.setEtatCommande(commandeClientDto.getEtatCommande());
 
 		return commandeClient;
+	}
+
+	public boolean isCommandeLivree() {
+		return EtatCommande.LIVREE.equals(this.etatCommande);
 	}
 }

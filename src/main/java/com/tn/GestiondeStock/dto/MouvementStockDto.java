@@ -43,7 +43,7 @@ public class MouvementStockDto {
 	}
 	
 	
-	public MouvementStock toEntity(MouvementStockDto mouvementStockDto) {
+	public static MouvementStock toEntity(MouvementStockDto mouvementStockDto) {
 		if (mouvementStockDto == null) {
 			return null;
 			//TODO throw an exception 

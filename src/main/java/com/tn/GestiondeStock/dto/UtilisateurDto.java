@@ -1,5 +1,6 @@
 package com.tn.GestiondeStock.dto;
 
+import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,7 +26,7 @@ public class UtilisateurDto {
 	
 	private String mail;
 	
-	private Date dateDeNaissance;
+	private Instant dateDeNaissance;
 	
 	private String MotDePasse;
 	
@@ -41,7 +42,7 @@ public class UtilisateurDto {
 	
 	private EntrepriseDto entreprise;
 	
-//	private Integer idEntreprise;
+	private Integer idEntreprise;
 	
 	private List<RoleDto> roles;
 	
@@ -54,7 +55,7 @@ public class UtilisateurDto {
 			//TODO throw an exception 
 		}
 		
-
+		//System.out.println("UtilisateurEntreprise : "+utilisateur.getEntreprise());
 		return UtilisateurDto.builder()
 				.id(utilisateur.getId())
 				.nom(utilisateur.getNom())
