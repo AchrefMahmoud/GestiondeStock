@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.tn.GestiondeStock.entities.CommandeFournisseur;
 
+import com.tn.GestiondeStock.entities.EtatCommande;
 import lombok.Builder;
 import lombok.Data;
 
@@ -20,6 +21,8 @@ public class CommandeFournisseurDto {
 	private String code;
 
 	private Date dateCommande;
+
+	private EtatCommande etatCommande;
 
 	private FournisseurDto fournisseur;
 		
@@ -40,24 +43,30 @@ public class CommandeFournisseurDto {
 				.code(commandeFournisseur.getCode())
 				.dateCommande(commandeFournisseur.getDateCommande())
 				.idEntreprise(commandeFournisseur.getIdEntreprise())
+				.etatCommande((commandeFournisseur.getEtatCommande()))
 				.fournisseur(FournisseurDto.fromEntity(commandeFournisseur.getFournisseur()))
 				.build();
 	}
 
 	
-	public static CommandeFournisseur toEntity(CommandeFournisseurDto commandeFournisseurDto) {
-		if (commandeFournisseurDto == null) {
+	public static CommandeFournisseur toEntity(CommandeFournisseurDto dto) {
+		if (dto == null) {
 			return null;
 			//TODO throw an exception 
 		}
 		
 		CommandeFournisseur commandeFournisseur = new CommandeFournisseur();
-		commandeFournisseur.setId(commandeFournisseur.getId());
-		commandeFournisseur.setCode(commandeFournisseur.getCode());
-		commandeFournisseur.setIdEntreprise(commandeFournisseur.getIdEntreprise());
-		commandeFournisseur.setDateCommande(commandeFournisseur.getDateCommande());
+		commandeFournisseur.setId(dto.getId());
+		commandeFournisseur.setCode(dto.getCode());
+		commandeFournisseur.setIdEntreprise(dto.getIdEntreprise());
+		commandeFournisseur.setDateCommande(dto.getDateCommande());
+		commandeFournisseur.setEtatCommande(dto.getEtatCommande());
+		commandeFournisseur.setFournisseur(FournisseurDto.toEntity(dto.getFournisseur()));
+
 
 		return commandeFournisseur;
 	}
+
+	public boolean isCommandeLivree() { return EtatCommande.LIVREE.equals(this.etatCommande);}
 
 }

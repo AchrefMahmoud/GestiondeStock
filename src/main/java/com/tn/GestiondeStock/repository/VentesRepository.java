@@ -7,7 +7,7 @@ import java.util.Optional;
 import com.tn.GestiondeStock.entities.Ventes;
 
 public interface VentesRepository extends JpaRepository<Ventes, Integer> {
-	
-//	Optional<Ventes> findVentesByCode(String code);
-	
+
+//    Optional<Ventes> findVentesByCode(String code);
+
 }

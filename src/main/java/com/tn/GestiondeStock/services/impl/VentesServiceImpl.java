@@ -1,6 +1,6 @@
 package com.tn.GestiondeStock.services.impl;
 
-/*
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -91,7 +91,7 @@ public class VentesServiceImpl implements VentesService {
                         ErrorCodes.VENTE_NOT_FOUND));
     }
 
-    @Override
+ /*   @Override
     public VentesDto findByCode(String code) {
         if (!StringUtils.hasLength(code)) {
             log.error("Vente Code is Null" );
@@ -103,7 +103,7 @@ public class VentesServiceImpl implements VentesService {
                         "Aucune vente client n'a ete trouve avec le Code" + code, ErrorCodes.VENTE_NOT_FOUND
                 ));
     }
-
+*/
     @Override
     public List<VentesDto> findAll() {
         return ventesRepository.findAll().stream()
@@ -124,4 +124,3 @@ public class VentesServiceImpl implements VentesService {
 
 
 }
-*/

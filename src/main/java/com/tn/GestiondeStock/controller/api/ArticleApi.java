@@ -2,6 +2,9 @@ package com.tn.GestiondeStock.controller.api;
 
 import java.util.List;
 
+import com.tn.GestiondeStock.dto.LigneCommandeClientDto;
+import com.tn.GestiondeStock.dto.LigneCommandeFournisseurDto;
+import com.tn.GestiondeStock.dto.LigneVenteDto;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -52,7 +55,23 @@ public interface ArticleApi {
 			@ApiResponse(code = 200, message = "La liste des articles / Une liste vide"),
 			})
 	List<ArticleDto> findAll();
-	
+
+
+
+	@GetMapping(value = APP_ROOT + "/articles/historique/vente/{idArticle}", produces = MediaType.APPLICATION_JSON_VALUE)
+	List<LigneVenteDto> findHistoriqueVentes(@PathVariable("idArticle") Integer idArticle);
+
+	@GetMapping(value = APP_ROOT + "/articles/historique/commandeclient/{idArticle}", produces = MediaType.APPLICATION_JSON_VALUE)
+	List<LigneCommandeClientDto> findHistoriqueCommandeClient(@PathVariable("idArticle") Integer idArticle);
+
+	@GetMapping(value = APP_ROOT + "/articles/historique/commandefournisseur/{idArticle}", produces = MediaType.APPLICATION_JSON_VALUE)
+	List<LigneCommandeFournisseurDto> findHistoriqueCommandeFournisseur(@PathVariable("idArticle") Integer idArticle);
+
+	@GetMapping(value = APP_ROOT + "/articles/filtre/category/{idCategory}", produces = MediaType.APPLICATION_JSON_VALUE)
+	List<ArticleDto> findAllArticleByIdCategory(@PathVariable("idCategory") Integer idCategory);
+
+
+
 	@DeleteMapping(value = APP_ROOT + "/articles/delete/{idArticle}")
 	@ApiOperation(value = "Supprimer un article par CODE", notes = "Cette methode permet de spprimer un article par son ID")
 	@ApiResponses(value = {

@@ -1,12 +1,9 @@
 package com.tn.GestiondeStock.entities;
 
 import java.math.BigDecimal;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,4 +31,12 @@ public class LigneVente extends AbstractEntity {
 	
 	@Column (name = "identreprise")
 	private Integer idEntreprise;
+
+	@ManyToOne
+	@JoinColumn(name = "idarticle")
+	private Article article;
+
+	@OneToMany(mappedBy = "ventes")
+	private List<LigneVente> ligneVentes;
+
 }

@@ -2,6 +2,9 @@ package com.tn.GestiondeStock.controller;
 
 import com.tn.GestiondeStock.controller.api.ArticleApi;
 import com.tn.GestiondeStock.dto.ArticleDto;
+import com.tn.GestiondeStock.dto.LigneCommandeClientDto;
+import com.tn.GestiondeStock.dto.LigneCommandeFournisseurDto;
+import com.tn.GestiondeStock.dto.LigneVenteDto;
 import com.tn.GestiondeStock.services.ArticleService;
 
 import java.util.List;
@@ -41,6 +44,26 @@ public class ArticleController implements ArticleApi  {
 	public List<ArticleDto> findAll() {
 		// TODO Auto-generated method stub
 		return articleService.findAll();
+	}
+
+	@Override
+	public List<LigneVenteDto> findHistoriqueVentes(Integer idArticle) {
+		return articleService.findHistoriqueVentes(idArticle);
+	}
+
+	@Override
+	public List<LigneCommandeClientDto> findHistoriqueCommandeClient(Integer idArticle) {
+		return articleService.findHistoriqueCommandeClient(idArticle);
+	}
+
+	@Override
+	public List<LigneCommandeFournisseurDto> findHistoriqueCommandeFournisseur(Integer idArticle) {
+		return articleService.findHistoriqueCommandeFournisseur(idArticle);
+	}
+
+	@Override
+	public List<ArticleDto> findAllArticleByIdCategory(Integer idCategory) {
+		return articleService.findAllArticleByIdCategory(idCategory);
 	}
 
 	@Override
