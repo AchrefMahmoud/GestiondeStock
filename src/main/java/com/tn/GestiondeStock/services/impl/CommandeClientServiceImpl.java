@@ -1,13 +1,15 @@
 package com.tn.GestiondeStock.services.impl;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import com.tn.GestiondeStock.dto.ArticleDto;
-import com.tn.GestiondeStock.dto.ClientDto;
+import com.tn.GestiondeStock.dto.*;
 import com.tn.GestiondeStock.entities.*;
 import com.tn.GestiondeStock.exception.InvalidOperationException;
+import com.tn.GestiondeStock.services.MouvementStockService;
 import com.tn.GestiondeStock.validator.ArticleValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,8 +18,6 @@ import org.springframework.util.StringUtils;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import com.tn.GestiondeStock.dto.CommandeClientDto;
-import com.tn.GestiondeStock.dto.LigneCommandeClientDto;
 import com.tn.GestiondeStock.exception.EntityNotFoundException;
 import com.tn.GestiondeStock.exception.ErrorCodes;
 import com.tn.GestiondeStock.exception.InvalidEntityException;
@@ -38,16 +38,18 @@ public class CommandeClientServiceImpl implements CommandeClientService {
 	private LigneCommandeClientRepository ligneCommandeClientRepository;
 	private ClientRepository clientRepository;
 	private ArticleRepository articleRepository;
+	private MouvementStockService mvtStkService;
 
 
 	@Autowired
 	public CommandeClientServiceImpl(CommandeClientRepository commandeClientRepository,
-									 ClientRepository clientRepository, ArticleRepository articleRepository, LigneCommandeClientRepository ligneCommandeClientRepository) {
+									 ClientRepository clientRepository, ArticleRepository articleRepository, LigneCommandeClientRepository ligneCommandeClientRepository, MouvementStockService mvtStkService) {
 		super();
 		this.commandeClientRepository = commandeClientRepository;
 		this.ligneCommandeClientRepository = ligneCommandeClientRepository;
 		this.clientRepository = clientRepository;
 		this.articleRepository = articleRepository;
+		this.mvtStkService = mvtStkService;
 	}
 
 	@Override
@@ -162,8 +164,11 @@ public class CommandeClientServiceImpl implements CommandeClientService {
 		CommandeClientDto commandeClient = checketatCommande(idCommande);
 		commandeClient.setEtatCommande(etatCommande);
 
-		return CommandeClientDto.fromEntity(
-				commandeClientRepository.save(CommandeClientDto.toEntity(commandeClient)));
+		CommandeClient savedCmdClt = commandeClientRepository.save(CommandeClientDto.toEntity(commandeClient));
+		if (commandeClient.isCommandeLivree()) {
+			updateMvtStk(idCommande);
+		}
+		return CommandeClientDto.fromEntity(savedCmdClt);
 	}
 
 	@Override
@@ -304,5 +309,20 @@ public class CommandeClientServiceImpl implements CommandeClientService {
 			throw new InvalidOperationException("Impossible de modifier l'etat de la commande avec un" + msg + "ID article null",
 					ErrorCodes.COMMANDE_CLIENT_NON_MODIFIABLE);
 		}
+	}
+
+	private void updateMvtStk(Integer idCommande) {
+		List<LigneCommandeClient> ligneCommandeClients = ligneCommandeClientRepository.findAllByCommandeClientId(idCommande);
+		ligneCommandeClients.forEach(lig -> {
+			MouvementStockDto mouvementStockDto = MouvementStockDto.builder()
+					.article(ArticleDto.fromEntity(lig.getArticle()))
+					.dateMvt(Instant.now())
+					.typemvt(TypeMvtStock.SORTIE)
+					.sourceMvt(SourceMvtStk.COMMANDE_CLIENT)
+					.quantite(lig.getQuantite())
+					.idEntreprise(lig.getIdEntreprise())
+					.build();
+			mvtStkService.sortieStock(mouvementStockDto);
+		});
 	}
 }

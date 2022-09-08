@@ -1,6 +1,7 @@
 package com.tn.GestiondeStock.entities;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -26,7 +27,7 @@ import lombok.NoArgsConstructor;
 public class MouvementStock extends AbstractEntity {
 
 	@Column(name = "datemvt")
-	private Date dateMvt;
+	private Instant dateMvt;
 	
 	@Column(name = "quantite")
 	private BigDecimal quantite;
@@ -37,6 +38,9 @@ public class MouvementStock extends AbstractEntity {
 	
 	@Column(name = "typemvt")
 	private TypeMvtStock typemvt;
+
+	@Column(name = "sourcemvt")
+	private SourceMvtStk sourceMvt;
 	
 	@Column (name = "identreprise")
 	private Integer idEntreprise;

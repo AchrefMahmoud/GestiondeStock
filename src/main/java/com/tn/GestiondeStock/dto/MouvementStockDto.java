@@ -1,9 +1,11 @@
 package com.tn.GestiondeStock.dto;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.Date;
 
 import com.tn.GestiondeStock.entities.MouvementStock;
+import com.tn.GestiondeStock.entities.SourceMvtStk;
 import com.tn.GestiondeStock.entities.TypeMvtStock;
 
 import lombok.Builder;
@@ -18,13 +20,15 @@ public class MouvementStockDto {
 	
 	private Integer id;
 
-	private Date dateMvt;
+	private Instant dateMvt;
 	
 	private BigDecimal quantite;
 	
 	private ArticleDto article;
 	
 	private TypeMvtStock typemvt;
+
+	private SourceMvtStk sourceMvt;
 	
 	private Integer idEntreprise;
 	
@@ -38,6 +42,8 @@ public class MouvementStockDto {
 				.dateMvt(mouvementStock.getDateMvt())
 				.quantite(mouvementStock.getQuantite())
 				.idEntreprise(mouvementStock.getIdEntreprise())
+				.typemvt(mouvementStock.getTypemvt())
+				.sourceMvt(mouvementStock.getSourceMvt())
 				.article(ArticleDto.fromEntity(mouvementStock.getArticle()))
 				.build();
 	}
@@ -52,7 +58,10 @@ public class MouvementStockDto {
 		mouvementStock.setId(mouvementStockDto.getId());
 		mouvementStock.setDateMvt(mouvementStockDto.getDateMvt());
 		mouvementStock.setQuantite(mouvementStockDto.getQuantite());
-		mouvementStock.setIdEntreprise(mouvementStockDto.getIdEntreprise());	
+		mouvementStock.setIdEntreprise(mouvementStockDto.getIdEntreprise());
+		mouvementStock.setArticle(ArticleDto.toEntity(mouvementStockDto.getArticle()));
+		mouvementStock.setTypemvt(mouvementStockDto.getTypemvt());
+		mouvementStock.setSourceMvt(mouvementStockDto.getSourceMvt());
 
 		
 		return mouvementStock;
