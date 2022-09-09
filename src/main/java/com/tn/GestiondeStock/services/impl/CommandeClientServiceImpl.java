@@ -149,6 +149,11 @@ public class CommandeClientServiceImpl implements CommandeClientService {
 			log.error("Commande client ID is Null");
 			return;
 		}
+		List<LigneCommandeClient> ligneCommandeClients = ligneCommandeClientRepository.findAllByCommandeClientId(id);
+		if (!ligneCommandeClients.isEmpty()) {
+			throw new InvalidOperationException("impossible de supprimer une commande client deja utiliser",
+					ErrorCodes.COMMANDE_CLIENT_ALREADY_IN_USE);
+		}
 		commandeClientRepository.deleteById(id);
 	}
 

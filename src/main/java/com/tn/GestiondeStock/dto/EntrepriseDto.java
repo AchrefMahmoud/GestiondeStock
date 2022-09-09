@@ -25,6 +25,12 @@ public class EntrepriseDto {
 	private String adresse;
 	
 	private String codeFiscal;
+
+	private String ville;
+
+	private String pays;
+
+	private String codePostale;
 	
 	private String photo;
 	
@@ -51,6 +57,9 @@ public class EntrepriseDto {
 			.photo(entreprise.getPhoto())
 			.siteWeb(entreprise.getSiteWeb())
 			.adresse(entreprise.getAdresse())
+			.ville(entreprise.getVille())
+			.codePostale(entreprise.getCodePostale())
+			.pays(entreprise.getPays())
 			.numTel(entreprise.getNumTel())
 			/*.utilisateurs(
 					entreprise.getUtilisateurs() != null ?
@@ -75,7 +84,9 @@ public class EntrepriseDto {
 		entreprise.setCodeFiscal(entrepriseDto.getCodeFiscal());
 		entreprise.setPhoto(entrepriseDto.getPhoto());
 		entreprise.setSiteWeb(entrepriseDto.getSiteWeb());
-		entreprise.setAdresse(entrepriseDto.getAdresse());
+		entreprise.setVille(entrepriseDto.getVille());
+		entreprise.setCodePostale(entrepriseDto.getCodePostale());
+		entreprise.setPays(entrepriseDto.getPays());
 		entreprise.setNumTel(entrepriseDto.getNumTel());
 
 		return entreprise;

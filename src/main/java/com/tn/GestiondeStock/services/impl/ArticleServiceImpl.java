@@ -7,6 +7,10 @@ import java.util.stream.Collectors;
 import com.tn.GestiondeStock.dto.LigneCommandeClientDto;
 import com.tn.GestiondeStock.dto.LigneCommandeFournisseurDto;
 import com.tn.GestiondeStock.dto.LigneVenteDto;
+import com.tn.GestiondeStock.entities.LigneCommandeClient;
+import com.tn.GestiondeStock.entities.LigneCommandeFournisseur;
+import com.tn.GestiondeStock.entities.LigneVente;
+import com.tn.GestiondeStock.exception.InvalidOperationException;
 import com.tn.GestiondeStock.repository.LigneCommandeClientRepository;
 import com.tn.GestiondeStock.repository.LigneCommandeFournisseurRepository;
 import com.tn.GestiondeStock.repository.LigneVenteRepository;
@@ -134,6 +138,21 @@ public class ArticleServiceImpl implements ArticleService {
 		if (id == null) {
 			log.error("Article ID is null");
 			return;
+		}
+		List<LigneCommandeClient> ligneCommandeClients = commandeClientRepository.findAllByArticleId(id);
+		if (!ligneCommandeClients.isEmpty()) {
+			throw new InvalidOperationException("impossible de supprimer un article deja utiliser dans des commande clients",
+					ErrorCodes.ARTICLE_ALREADY_IN_USE);
+		}
+		List<LigneCommandeFournisseur> ligneCommandeFournisseurs = commandeFournisseurRepository.findAllByArticleId(id);
+		if (!ligneCommandeFournisseurs.isEmpty()) {
+			throw new InvalidOperationException("impossible de supprimer un article deja utiliser dans des commande fournisseur",
+					ErrorCodes.ARTICLE_ALREADY_IN_USE);
+		}
+		List<LigneVente> ligneVentes = venteRepository.findAllByArticleId(id);
+		if (!ligneVentes.isEmpty()) {
+			throw new InvalidOperationException("Impossible de supprimer un article deja utiliser dans des ventes",
+					ErrorCodes.ARTICLE_ALREADY_IN_USE);
 		}
 		articleRepository.deleteById(id);
 	}

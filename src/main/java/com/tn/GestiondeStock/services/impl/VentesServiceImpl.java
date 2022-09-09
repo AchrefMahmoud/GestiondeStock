@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import com.tn.GestiondeStock.dto.*;
 import com.tn.GestiondeStock.entities.*;
+import com.tn.GestiondeStock.exception.InvalidOperationException;
 import com.tn.GestiondeStock.services.MouvementStockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -117,6 +118,11 @@ public class VentesServiceImpl implements VentesService {
         if (id == null) {
             log.error("Vente ID is null");
             return;
+        }
+        List<LigneVente> ligneVentes = ligneVenteRepository.findAllByVentesId(id);
+        if (!ligneVentes.isEmpty()) {
+            throw new InvalidOperationException("Impossible de supprimer une vente d'execute",
+                    ErrorCodes.VENTE_ALREADY_IN_USE);
         }
         ventesRepository.deleteById(id);
     }

@@ -32,6 +32,23 @@ public class FournisseurValidator {
 	if (!StringUtils.hasLength(fournisseurDto.getNumTel())) {
 		errors.add("Veuillez renseigner le numéro de telephone du fournisseur");
 	}
+
+	if (!StringUtils.hasLength(fournisseurDto.getAdresse())) {
+		errors.add("Veuillez renseigner l'adresse du fournisseur");
+	}
+
+	if (!StringUtils.hasLength(fournisseurDto.getPays())) {
+		errors.add("Veuillez renseigner la pays du fournisseur");
+	}
+
+	if (!StringUtils.hasLength(fournisseurDto.getVille())) {
+		errors.add("Veuillez renseigner la ville du fournisseur");
+	}
+
+	if (!StringUtils.hasLength(fournisseurDto.getCodePostale())) {
+		errors.add("Veuillez renseigner le code postale du fournisseur");
+	}
+
 	return errors;
 
 	}

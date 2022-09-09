@@ -32,8 +32,23 @@ public class ClientValidator {
 		if (!StringUtils.hasLength(clientDto.getNumTel())) {
 			errors.add("Veuillez renseigner le numéro de telephone du client");
 		}
-		
-		return errors;
+
+		if (!StringUtils.hasLength(clientDto.getAdresse())) {
+			errors.add("Veuillez renseigner l'adresse du client");
+		}
+
+		if (!StringUtils.hasLength(clientDto.getPays())) {
+			errors.add("Veuillez renseigner la pays du client");
+		}
+
+		if (!StringUtils.hasLength(clientDto.getVille())) {
+			errors.add("Veuillez renseigner la ville du client");
+		}
+
+		if (!StringUtils.hasLength(clientDto.getCodePostale())) {
+			errors.add("Veuillez renseigner le code postale du client");
+		}
+			return errors;
 	}
 	
 }

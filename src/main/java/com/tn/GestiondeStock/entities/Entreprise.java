@@ -28,6 +28,15 @@ public class Entreprise extends AbstractEntity {
 	
 	@Column(name = "adresse")
 	private String adresse;
+
+	@Column(name ="ville")
+	private String ville;
+
+	@Column(name ="pays")
+	private String pays;
+
+	@Column(name ="codePostale")
+	private String codePostale;
 	
 	@Column(name = "codeFiscal")
 	private String codeFiscal;

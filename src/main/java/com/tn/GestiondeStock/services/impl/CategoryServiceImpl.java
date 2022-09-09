@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import com.tn.GestiondeStock.entities.Article;
+import com.tn.GestiondeStock.exception.InvalidOperationException;
+import com.tn.GestiondeStock.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -25,10 +28,12 @@ import lombok.extern.slf4j.Slf4j;
 public class CategoryServiceImpl implements CategoryService {
 
 	private CategoryRepository categoryRepository;
-	
+	private ArticleRepository articleRepository;
+
 	@Autowired
-	public CategoryServiceImpl(CategoryRepository categoryRepository) {
+	public CategoryServiceImpl(CategoryRepository categoryRepository, ArticleRepository articleRepository) {
 		this.categoryRepository = categoryRepository;
+		this.articleRepository = articleRepository;
 	}
 
 	@Override
@@ -88,6 +93,11 @@ public class CategoryServiceImpl implements CategoryService {
 		if (id == null) {
 			log.error("Category ID is null");
 			return;
+		}
+		List<Article> articles = articleRepository.findAllByCategoryId(id);
+		if (!articles.isEmpty()) {
+			throw new InvalidOperationException("Impossible de supprimer un client qui a deja des commandes",
+					ErrorCodes.CATEGORY_ALREADY_IN_USE);
 		}
 		categoryRepository.deleteById(id);
 	}

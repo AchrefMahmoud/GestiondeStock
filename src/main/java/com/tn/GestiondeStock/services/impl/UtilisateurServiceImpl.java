@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import com.tn.GestiondeStock.dto.ChangerMotDePasseUtilisateurDto;
+import com.tn.GestiondeStock.exception.InvalidOperationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,7 @@ import com.tn.GestiondeStock.services.UtilisateurService;
 import com.tn.GestiondeStock.validator.UtilisateurValidator;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.StringUtils;
 
 @Service
 @Slf4j
@@ -73,6 +76,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		utilisateurRepository.deleteById(id);
 	}
 
+
 	@Override
 	public UtilisateurDto findByMail(String mail) {
 		return utilisateurRepository.findUtilisateurByMail(mail)
@@ -83,4 +87,46 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		);
 	}
 
+
+	@Override
+	public UtilisateurDto changerMotDePasse(ChangerMotDePasseUtilisateurDto dto) {
+		validate(dto);
+		Optional<Utilisateur> utilisateurOptional = utilisateurRepository.findById(dto.getId());
+		if (!utilisateurOptional.isPresent()) {
+			log.warn("Aucun utilisateur n'a ete trouve avec l'ID" + dto.getId());
+			throw new EntityNotFoundException("Aucun utilisateur n'a ete trouve avec l'ID" + dto.getId(),
+					ErrorCodes.UTILISATEUR_NOT_FOUND);
+		}
+
+		Utilisateur utilisateur = utilisateurOptional.get();
+		utilisateur.setMotDePasse(dto.getMotDePasse());
+
+		return UtilisateurDto.fromEntity(
+				utilisateurRepository.save(utilisateur)
+		);
+	}
+
+
+	private void validate(ChangerMotDePasseUtilisateurDto dto) {
+		if (dto == null) {
+			log.warn("Impossible de modifier le mot de passe avec un objet NULL");
+			throw new InvalidOperationException("Aucune information n'a ete fourni pour avoir changer le mot de passe",
+					ErrorCodes.UTILISATEUR_CHANGE_PASSWORD_NOT_VALID);
+		}
+		if (dto.getId() == null) {
+			log.warn("Impossible de modifier le mot de passe avec un ID NULL");
+			throw new InvalidOperationException("ID utilisateur NULL -> impossible de changer le mot de passe",
+					ErrorCodes.UTILISATEUR_CHANGE_PASSWORD_NOT_VALID);
+		}
+		if (!StringUtils.hasLength(dto.getMotDePasse()) || !StringUtils.hasLength(dto.getConfirmMotDePasse())) {
+			log.warn("Impossible de modifier le mot de passe avec un mot de passe NULL");
+			throw new InvalidOperationException("Mot de passe utilisateur NULL -> impossible de changer le mot de passe",
+					ErrorCodes.UTILISATEUR_CHANGE_PASSWORD_NOT_VALID);
+		}
+		if (!dto.getMotDePasse().equals(dto.getConfirmMotDePasse())) {
+			log.warn("Impossible de modifier le mot de passe avec deux mot de passe different");
+			throw new InvalidOperationException("Mots de passe utilisateur non conformes -> impossible de changer le mot de passe",
+					ErrorCodes.UTILISATEUR_CHANGE_PASSWORD_NOT_VALID);
+		}
+	}
 }

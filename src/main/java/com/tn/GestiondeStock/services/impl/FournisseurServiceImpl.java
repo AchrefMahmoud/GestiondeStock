@@ -4,6 +4,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import com.tn.GestiondeStock.entities.CommandeClient;
+import com.tn.GestiondeStock.entities.CommandeFournisseur;
+import com.tn.GestiondeStock.exception.InvalidOperationException;
+import com.tn.GestiondeStock.repository.CommandeFournisseurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,12 +27,14 @@ import lombok.extern.slf4j.Slf4j;
 public class FournisseurServiceImpl implements FournisseurService {
 
 	private FournisseurRepository fournisseurRepository;
+	private CommandeFournisseurRepository commandeFournisseurRepository;
 
 	@Autowired
-	public FournisseurServiceImpl(FournisseurRepository fournisseurRepository) {
+	public FournisseurServiceImpl(FournisseurRepository fournisseurRepository, CommandeFournisseurRepository commandeFournisseurRepository) {
 		this.fournisseurRepository = fournisseurRepository;
+		this.commandeFournisseurRepository = commandeFournisseurRepository;
 	}
-	
+
 	@Override
 	public FournisseurDto save(FournisseurDto dto) {
 		List<String> errors = FournisseurValidator.validate(dto);
@@ -69,6 +75,11 @@ public class FournisseurServiceImpl implements FournisseurService {
 		if (id == null) {
 			log.error("Fournisseur ID is null");
 			return;
+		}
+		List<CommandeFournisseur> commandeFournisseurs = commandeFournisseurRepository.findAllByFournisseurId(id);
+		if (!commandeFournisseurs.isEmpty()) {
+			throw new InvalidOperationException("impossible de supprimer un fournisseur deja utiliser",
+					ErrorCodes.FOURNISSEUR_ALREADY_IN_USE);
 		}
 		fournisseurRepository.deleteById(id);
 	}
