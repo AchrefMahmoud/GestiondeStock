@@ -23,47 +23,47 @@ public class CommandeClientController implements CommandeClientApi {
 
 
     @Override
-    public ResponseEntity<CommandeClientDto> save(CommandeClientDto dto) {
+    public ResponseEntity<CommandeClientDto> saveCommandeClient(CommandeClientDto dto) {
         return ResponseEntity.ok(commandeClientService.save(dto));
     }
 
     @Override
-    public ResponseEntity<CommandeClientDto> updateEtatCommande(Integer idCommande, EtatCommande etatCommande) {
+    public ResponseEntity<CommandeClientDto> updateEtatCommandeClient(Integer idCommande, EtatCommande etatCommande) {
         return ResponseEntity.ok(commandeClientService.updateEtatCommande(idCommande, etatCommande));
     }
 
     @Override
-    public ResponseEntity<CommandeClientDto> updateQuantiteCommande(Integer idCommande, Integer idLigneCommande, BigDecimal quantite) {
+    public ResponseEntity<CommandeClientDto> updateQuantiteCommandeClient(Integer idCommande, Integer idLigneCommande, BigDecimal quantite) {
         return ResponseEntity.ok(commandeClientService.updateQuantiteCommande(idCommande, idLigneCommande, quantite));
     }
 
     @Override
-    public ResponseEntity<CommandeClientDto> updateClient(Integer idCommande, Integer idClient) {
+    public ResponseEntity<CommandeClientDto> updateClientInCommandeClient(Integer idCommande, Integer idClient) {
         return ResponseEntity.ok(commandeClientService.updateClient(idCommande, idClient));
     }
 
     @Override
-    public ResponseEntity<CommandeClientDto> updateArticle(Integer idCommande, Integer idLigneCommande, Integer idArticle) {
+    public ResponseEntity<CommandeClientDto> updateArticleInCommandeClient(Integer idCommande, Integer idLigneCommande, Integer idArticle) {
         return ResponseEntity.ok(commandeClientService.updateArticle(idCommande, idLigneCommande, idArticle));
     }
 
     @Override
-    public ResponseEntity<CommandeClientDto> deleteArticle(Integer idCommande, Integer idLigneCommande) {
+    public ResponseEntity<CommandeClientDto> deleteArticleInCommandeClient(Integer idCommande, Integer idLigneCommande) {
         return ResponseEntity.ok(commandeClientService.deleteArticle(idCommande, idLigneCommande));
     }
 
     @Override
-    public ResponseEntity<CommandeClientDto> findById(Integer id) {
+    public ResponseEntity<CommandeClientDto> findCommandeClientById(Integer id) {
         return ResponseEntity.ok(commandeClientService.findById(id));
     }
 
     @Override
-    public ResponseEntity<CommandeClientDto> findByCode(String code) {
+    public ResponseEntity<CommandeClientDto> findCommandeClientByCode(String code) {
         return ResponseEntity.ok(commandeClientService.findByCode(code));
     }
 
     @Override
-    public ResponseEntity<List<CommandeClientDto>> findAll() {
+    public ResponseEntity<List<CommandeClientDto>> findAllCommandeClient() {
         return ResponseEntity.ok(commandeClientService.findAll());
     }
 
@@ -74,7 +74,7 @@ public class CommandeClientController implements CommandeClientApi {
     }
 */
     @Override
-    public ResponseEntity<Void> delete(Integer id) {
+    public ResponseEntity<Void> deleteCommandeClient(Integer id) {
         commandeClientService.delete(id);
         return ResponseEntity.ok().build();
     }

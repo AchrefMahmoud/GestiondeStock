@@ -9,19 +9,19 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Api(FOURNISSEUR_ENDPOINT)
+@Api("fournisseurs")
 public interface FournisseurApi {
 
     @PostMapping(FOURNISSEUR_ENDPOINT + "/create")
-    FournisseurDto save(@RequestBody FournisseurDto dto);
+    FournisseurDto saveFournisseur(@RequestBody FournisseurDto dto);
 
     @GetMapping(FOURNISSEUR_ENDPOINT + "/{idFournisseur}")
-    FournisseurDto findById(@PathVariable("idFournisseur") Integer id);
+    FournisseurDto findFournisseurById(@PathVariable("idFournisseur") Integer id);
 
     @GetMapping(FOURNISSEUR_ENDPOINT + "/all")
-    List<FournisseurDto> findAll();
+    List<FournisseurDto> findAllFournisseur();
 
     @DeleteMapping(FOURNISSEUR_ENDPOINT + "/delete/{idFournisseur}")
-    void delete(@PathVariable("idFournisseur") Integer id);
+    void deleteFournisseur(@PathVariable("idFournisseur") Integer id);
 
 }

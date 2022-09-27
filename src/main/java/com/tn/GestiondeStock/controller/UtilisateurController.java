@@ -19,22 +19,22 @@ public class UtilisateurController implements UtilisateurApi {
     }
 
     @Override
-    public UtilisateurDto save(UtilisateurDto dto) {
+    public UtilisateurDto saveUtilisateur(UtilisateurDto dto) {
         return utilisateurService.save(dto);
     }
 
     @Override
-    public UtilisateurDto findById(Integer id) {
+    public UtilisateurDto findUtilisateurById(Integer id) {
         return utilisateurService.findById(id);
     }
 
     @Override
-    public List<UtilisateurDto> findAll() {
+    public List<UtilisateurDto> findAllUtilisateur() {
         return utilisateurService.findAll();
     }
 
     @Override
-    public void delete(Integer id) {
+    public void deleteUtilisateur(Integer id) {
         utilisateurService.delete(id);
     }
 }

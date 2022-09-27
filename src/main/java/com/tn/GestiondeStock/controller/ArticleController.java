@@ -23,41 +23,41 @@ public class ArticleController implements ArticleApi  {
 	}
 	
 	@Override
-	public ArticleDto save(ArticleDto dto) {
+	public ArticleDto saveArticle(ArticleDto dto) {
 		// TODO Auto-generated method stub
 		return articleService.save(dto);
 	}
 
 	@Override
-	public ArticleDto findById(Integer id) {
+	public ArticleDto findArticleById(Integer id) {
 		// TODO Auto-generated method stub
 		return articleService.findById(id);
 	}
 
 	@Override
-	public ArticleDto findByCodeArticle(String codeArticle) {
+	public ArticleDto findArticleByCodeArticle(String codeArticle) {
 		// TODO Auto-generated method stub
 		return articleService.findByCodeArticle(codeArticle);
 	}
 
 	@Override
-	public List<ArticleDto> findAll() {
+	public List<ArticleDto> findAllArticle() {
 		// TODO Auto-generated method stub
 		return articleService.findAll();
 	}
 
 	@Override
-	public List<LigneVenteDto> findHistoriqueVentes(Integer idArticle) {
+	public List<LigneVenteDto> findHistoriqueVentesArticle(Integer idArticle) {
 		return articleService.findHistoriqueVentes(idArticle);
 	}
 
 	@Override
-	public List<LigneCommandeClientDto> findHistoriqueCommandeClient(Integer idArticle) {
+	public List<LigneCommandeClientDto> findHistoriqueCommandeClientArticle(Integer idArticle) {
 		return articleService.findHistoriqueCommandeClient(idArticle);
 	}
 
 	@Override
-	public List<LigneCommandeFournisseurDto> findHistoriqueCommandeFournisseur(Integer idArticle) {
+	public List<LigneCommandeFournisseurDto> findHistoriqueCommandeFournisseurArticle(Integer idArticle) {
 		return articleService.findHistoriqueCommandeFournisseur(idArticle);
 	}
 
@@ -67,7 +67,7 @@ public class ArticleController implements ArticleApi  {
 	}
 
 	@Override
-	public void delete(Integer id) {
+	public void deleteArticle(Integer id) {
 		// TODO Auto-generated method stub
 		articleService.delete(id);
 	}

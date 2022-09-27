@@ -14,42 +14,42 @@ import java.util.List;
 import static com.tn.GestiondeStock.utils.Constants.APP_ROOT;
 import static com.tn.GestiondeStock.utils.Constants.COMMANDE_FOURNISSEUR_ENDPOINT;
 
-@Api(COMMANDE_FOURNISSEUR_ENDPOINT)
+@Api("commandeFournisseurs")
 public interface CommandeFournisseurApi {
 
     @PostMapping(COMMANDE_FOURNISSEUR_ENDPOINT + "/create")
-    CommandeFournisseurDto save (@RequestBody CommandeFournisseurDto dto);
+    CommandeFournisseurDto saveCommandeFournisseur (@RequestBody CommandeFournisseurDto dto);
 
     @PatchMapping(COMMANDE_FOURNISSEUR_ENDPOINT + "/update/etat/{idCommande}/{etatCommande}")
-    CommandeFournisseurDto updateEtatCommande(@PathVariable("idCommande") Integer idCommande, @PathVariable("etatCommande") EtatCommande etatCommande);
+    CommandeFournisseurDto updateEtatCommandeFournisseur(@PathVariable("idCommande") Integer idCommande, @PathVariable("etatCommande") EtatCommande etatCommande);
 
 
     @PatchMapping(COMMANDE_FOURNISSEUR_ENDPOINT + "/update/quantite/{idCommande}/{idLigneCommande}/{quantite}")
-    CommandeFournisseurDto updateQuantiteCommande(@PathVariable("idCommande") Integer idCommande,
+    CommandeFournisseurDto updateQuantiteCommandeFournisseur(@PathVariable("idCommande") Integer idCommande,
         @PathVariable("idLigneCommande") Integer idLigneCommande, @PathVariable("quantite") BigDecimal quantite);
 
     @PatchMapping(COMMANDE_FOURNISSEUR_ENDPOINT + "/update/fournisseur/{idCommande}/{idFournisseur}")
-    CommandeFournisseurDto updateFournisseur(@PathVariable("idCommande") Integer idCommande, @PathVariable("idFournisseur") Integer idFournisseur);
+    CommandeFournisseurDto updateFournisseurInCommandeFournisseur(@PathVariable("idCommande") Integer idCommande, @PathVariable("idFournisseur") Integer idFournisseur);
 
     @PatchMapping(COMMANDE_FOURNISSEUR_ENDPOINT + "/update/article/{idCommande}/{idLigneCommande}/{idArticle}")
-    CommandeFournisseurDto updateArticle(@PathVariable("idCommande") Integer idCommande,
+    CommandeFournisseurDto updateArticleInCommandeFournisseur(@PathVariable("idCommande") Integer idCommande,
         @PathVariable("idLigneCommande") Integer idLigneCommande, @PathVariable("idArticle") Integer idArticle);
 
     @DeleteMapping(COMMANDE_FOURNISSEUR_ENDPOINT + "/delete/article/{idCommande}/{idLigneCommande}")
-    CommandeFournisseurDto deleteArticle(@PathVariable("idCommande")Integer idCommande, @PathVariable("idLigneCommande") Integer idLigneCommande);
+    CommandeFournisseurDto deleteArticleInCommandeFournisseur(@PathVariable("idCommande")Integer idCommande, @PathVariable("idLigneCommande") Integer idLigneCommande);
 
 
     @GetMapping(COMMANDE_FOURNISSEUR_ENDPOINT + "/{idCommandeFournisseur}")
-    CommandeFournisseurDto findById (@PathVariable("idCommandeFournisseur") Integer id);
+    CommandeFournisseurDto findCommandeFournisseurById (@PathVariable("idCommandeFournisseur") Integer id);
 
     @GetMapping(COMMANDE_FOURNISSEUR_ENDPOINT + "/{codeCommandeFoutnisseur}")
-    CommandeFournisseurDto findByCode (@PathVariable("codeCommandeFoutnisseur") String code);
+    CommandeFournisseurDto findCommandeFournisseurByCode (@PathVariable("codeCommandeFoutnisseur") String code);
 
     @GetMapping(COMMANDE_FOURNISSEUR_ENDPOINT + "/all")
-    List<CommandeFournisseurDto> findAll();
+    List<CommandeFournisseurDto> findAllCommandeFournisseur();
 
     @DeleteMapping(COMMANDE_FOURNISSEUR_ENDPOINT + "/delete/{idCommandeFournisseur}")
-    void delete(@PathVariable("idCommandeFournisseur") Integer id );
+    void deleteCommandeFournisseur(@PathVariable("idCommandeFournisseur") Integer id );
 
 
 //    @GetMapping(COMMANDE_FOURNISSEUR_ENDPOINT + "/lignesCommande/{idCommande}")

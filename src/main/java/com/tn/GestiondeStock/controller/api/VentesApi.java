@@ -7,21 +7,21 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Api(VENTES_ENDPOINT)
+@Api("ventes")
 public interface VentesApi {
 
     @PostMapping(VENTES_ENDPOINT + "/create")
-    VentesDto save (@RequestBody VentesDto dto);
+    VentesDto saveVente (@RequestBody VentesDto dto);
 
     @GetMapping(VENTES_ENDPOINT + "/{idVente}")
-    VentesDto findById (@PathVariable("idVente") Integer id);
+    VentesDto findVenteById (@PathVariable("idVente") Integer id);
 
 //  @GetMapping(VENTES_ENDPOINT + "/codeVente"
 //	VentesDto findByCode (@PathVariable("idVente") String codeVente);
 
     @GetMapping(VENTES_ENDPOINT + "/all")
-    List<VentesDto> findAll();
+    List<VentesDto> findAllVente();
 
     @DeleteMapping(VENTES_ENDPOINT + "/delete/{idVente}")
-    void delete(@PathVariable("idVente")Integer id );
+    void deleteVente(@PathVariable("idVente")Integer id );
 }

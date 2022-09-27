@@ -12,7 +12,7 @@ import java.util.List;
 
 import static com.tn.GestiondeStock.utils.Constants.APP_ROOT;
 
-@Api(APP_ROOT + "/client")
+@Api("clients")
 public interface ClientApi {
 
     @PostMapping(value = APP_ROOT + "/clients/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -21,7 +21,7 @@ public interface ClientApi {
             @ApiResponse(code = 200, message = "L'objet client creer / modifier"),
             @ApiResponse(code = 400, message = "L'objet client n'est pas valide")
     })
-    ClientDto save(@RequestBody ClientDto dto);
+    ClientDto saveClient(@RequestBody ClientDto dto);
 
     @GetMapping(value = APP_ROOT + "/clients/{idClient}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Rechercher un client par ID", notes = "Cette methode permet de chercher un client par son ID", response = ClientDto.class)
@@ -29,19 +29,19 @@ public interface ClientApi {
             @ApiResponse(code = 200, message = "Le client a ete trouver dans la BDD"),
             @ApiResponse(code = 404, message = "Aucun client n'existe dans la BDD avec l'ID fourni")
     })
-    ClientDto findById(@PathVariable("idClient") Integer idClient);
+    ClientDto findClientById(@PathVariable("idClient") Integer idClient);
 
     @GetMapping(value = APP_ROOT + "/clients/all", produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Renvoir la listes des client", notes = "Cette methode permet de chercher et renvoiyer la liste des client sexistent dans la BDD", responseContainer = "List<ClientDto>")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "La liste des client / Une liste vide"),
     })
-    List<ClientDto> findAll();
+    List<ClientDto> findAllClient();
 
     @DeleteMapping(value = APP_ROOT + "/clients/delete/{idClient}")
     @ApiOperation(value = "Supprimer une categorie par CODE", notes = "Cette methode permet de spprimer un client par son ID")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Le client a ete supprimer"),
     })
-    void delete(@PathVariable("idClient") Integer id);
+    void deleteClient(@PathVariable("idClient") Integer id);
 }

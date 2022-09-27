@@ -19,22 +19,22 @@ public class FournisseurController implements FournisseurApi {
     }
 
     @Override
-    public FournisseurDto save(FournisseurDto dto) {
+    public FournisseurDto saveFournisseur(FournisseurDto dto) {
         return fournisseurService.save(dto);
     }
 
     @Override
-    public FournisseurDto findById(Integer id) {
+    public FournisseurDto findFournisseurById(Integer id) {
         return fournisseurService.findById(id);
     }
 
     @Override
-    public List<FournisseurDto> findAll() {
+    public List<FournisseurDto> findAllFournisseur() {
         return fournisseurService.findAll();
     }
 
     @Override
-    public void delete(Integer id) {
+    public void deleteFournisseur(Integer id) {
         fournisseurService.delete(id);
     }
 }

@@ -19,22 +19,22 @@ public class VentesController implements VentesApi {
     }
 
     @Override
-    public VentesDto save(VentesDto dto) {
+    public VentesDto saveVente(VentesDto dto) {
         return ventesService.save(dto);
     }
 
     @Override
-    public VentesDto findById(Integer id) {
+    public VentesDto findVenteById(Integer id) {
         return ventesService.findById(id);
     }
 
     @Override
-    public List<VentesDto> findAll() {
+    public List<VentesDto> findAllVente() {
         return ventesService.findAll();
     }
 
     @Override
-    public void delete(Integer id) {
+    public void deleteVente(Integer id) {
         ventesService.delete(id);
     }
 }

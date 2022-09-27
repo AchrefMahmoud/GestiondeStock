@@ -21,7 +21,7 @@ import io.swagger.annotations.ApiResponses;
 
 import static com.tn.GestiondeStock.utils.Constants.APP_ROOT;
 
-@Api(APP_ROOT + "/articles")
+@Api("articles")
 public interface ArticleApi {
 
 
@@ -31,7 +31,7 @@ public interface ArticleApi {
 			@ApiResponse(code = 200, message = "L'objet article creer / modifier"),
 			@ApiResponse(code = 400, message = "L'objet article n'est pas valide")
 	}) 
-	ArticleDto save (@RequestBody ArticleDto dto);
+	ArticleDto saveArticle (@RequestBody ArticleDto dto);
 	
 	@GetMapping(value = APP_ROOT + "/articles/{idArticle}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value = "Rechercher un article par ID", notes = "Cette methode permet de chercher un article par son ID", response = ArticleDto.class)
@@ -39,7 +39,7 @@ public interface ArticleApi {
 			@ApiResponse(code = 200, message = "L'article a ete trouver dans la BDD"),
 			@ApiResponse(code = 404, message = "Aucun article n'existe dans la BDD avec l'ID fourni")
 	})
-	ArticleDto findById (@PathVariable("idArticle") Integer id);
+	ArticleDto findArticleById (@PathVariable("idArticle") Integer id);
 	
 	@GetMapping(value = APP_ROOT + "/articles/{codeArticle}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value = "Rechercher un article par CODE", notes = "Cette methode permet de chercher un article par son CODE", response = ArticleDto.class)
@@ -47,25 +47,25 @@ public interface ArticleApi {
 			@ApiResponse(code = 200, message = "L'article a ete trouver dans la BDD"),
 			@ApiResponse(code = 404, message = "Aucun article n'existe dans la BDD avec le CODE fourni")
 	})
-	ArticleDto findByCodeArticle (@PathVariable("codeArticle") String codeArticle);
+	ArticleDto findArticleByCodeArticle (@PathVariable("codeArticle") String codeArticle);
 
 	@GetMapping(value = APP_ROOT + "/articles/all", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value = "Renvoir la listes des articles", notes = "Cette methode permet de chercher et renvoiyer la liste des articles existent dans la BDD", responseContainer = "List<ArticleDto>")
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "La liste des articles / Une liste vide"),
 			})
-	List<ArticleDto> findAll();
+	List<ArticleDto> findAllArticle();
 
 
 
 	@GetMapping(value = APP_ROOT + "/articles/historique/vente/{idArticle}", produces = MediaType.APPLICATION_JSON_VALUE)
-	List<LigneVenteDto> findHistoriqueVentes(@PathVariable("idArticle") Integer idArticle);
+	List<LigneVenteDto> findHistoriqueVentesArticle(@PathVariable("idArticle") Integer idArticle);
 
 	@GetMapping(value = APP_ROOT + "/articles/historique/commandeclient/{idArticle}", produces = MediaType.APPLICATION_JSON_VALUE)
-	List<LigneCommandeClientDto> findHistoriqueCommandeClient(@PathVariable("idArticle") Integer idArticle);
+	List<LigneCommandeClientDto> findHistoriqueCommandeClientArticle(@PathVariable("idArticle") Integer idArticle);
 
 	@GetMapping(value = APP_ROOT + "/articles/historique/commandefournisseur/{idArticle}", produces = MediaType.APPLICATION_JSON_VALUE)
-	List<LigneCommandeFournisseurDto> findHistoriqueCommandeFournisseur(@PathVariable("idArticle") Integer idArticle);
+	List<LigneCommandeFournisseurDto> findHistoriqueCommandeFournisseurArticle(@PathVariable("idArticle") Integer idArticle);
 
 	@GetMapping(value = APP_ROOT + "/articles/filtre/category/{idCategory}", produces = MediaType.APPLICATION_JSON_VALUE)
 	List<ArticleDto> findAllArticleByIdCategory(@PathVariable("idCategory") Integer idCategory);
@@ -77,6 +77,6 @@ public interface ArticleApi {
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "L'article a ete supprimer"),
 	})
-	void delete( @PathVariable("idArticle") Integer id );
+	void deleteArticle( @PathVariable("idArticle") Integer id );
 	
 }

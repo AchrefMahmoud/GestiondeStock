@@ -119,7 +119,7 @@ public class VentesServiceImpl implements VentesService {
             log.error("Vente ID is null");
             return;
         }
-        List<LigneVente> ligneVentes = ligneVenteRepository.findAllByVentesId(id);
+        List<LigneVente> ligneVentes = ligneVenteRepository.findAllByVentesId   (id);
         if (!ligneVentes.isEmpty()) {
             throw new InvalidOperationException("Impossible de supprimer une vente d'execute",
                     ErrorCodes.VENTE_ALREADY_IN_USE);

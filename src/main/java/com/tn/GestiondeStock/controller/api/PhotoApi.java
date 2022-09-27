@@ -10,7 +10,7 @@ import java.io.IOException;
 
 import static com.tn.GestiondeStock.utils.Constants.APP_ROOT;
 
-@Api(APP_ROOT + "/photos")
+@Api("photos")
 public interface PhotoApi {
 
     @PostMapping(APP_ROOT + "/photos/{id}/{title}/{context}")

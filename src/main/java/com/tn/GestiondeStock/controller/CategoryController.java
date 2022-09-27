@@ -19,27 +19,27 @@ public class CategoryController implements CategoryApi {
     }
 
     @Override
-    public CategoryDto save(CategoryDto dto) {
+    public CategoryDto saveCategory(CategoryDto dto) {
         return categoryService.save(dto);
     }
 
     @Override
-    public CategoryDto findById(Integer idCategory) {
+    public CategoryDto findCategoryById(Integer idCategory) {
         return categoryService.findById(idCategory);
     }
 
     @Override
-    public CategoryDto findByCodeCategory(String codeCategory) {
+    public CategoryDto findCategoryByCodeCategory(String codeCategory) {
         return categoryService.findByCodeCategory(codeCategory);
     }
 
     @Override
-    public List<CategoryDto> findAll() {
+    public List<CategoryDto> findAllCategory() {
         return categoryService.findAll();
     }
 
     @Override
-    public void delete(Integer id) {
+    public void deleteCategory(Integer id) {
         categoryService.delete(id);
     }
 }

@@ -19,22 +19,22 @@ public class EntrepriseController implements EntrepriseApi {
     }
 
     @Override
-    public EntrepriseDto save(EntrepriseDto dto) {
+    public EntrepriseDto saveEntreprise(EntrepriseDto dto) {
         return entrepriseService.save(dto);
     }
 
     @Override
-    public EntrepriseDto findById(Integer id) {
+    public EntrepriseDto findEntrepriseById(Integer id) {
         return entrepriseService.findById(id);
     }
 
     @Override
-    public List<EntrepriseDto> findAll() {
+    public List<EntrepriseDto> findAllEntreprise() {
         return entrepriseService.findAll();
     }
 
     @Override
-    public void delete(Integer id) {
+    public void deleteEntreprise(Integer id) {
         entrepriseService.delete(id);
     }
 }

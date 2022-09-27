@@ -8,18 +8,18 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Api(UTILISATEUR_ENDPOINT)
+@Api("utilisateurs")
 public interface UtilisateurApi {
 
     @PostMapping(UTILISATEUR_ENDPOINT + "/create")
-    UtilisateurDto save(@RequestBody UtilisateurDto dto);
+    UtilisateurDto saveUtilisateur(@RequestBody UtilisateurDto dto);
 
     @GetMapping(UTILISATEUR_ENDPOINT + "/{idUtilisateur}")
-    UtilisateurDto findById(@PathVariable("idUtilisateur") Integer id);
+    UtilisateurDto findUtilisateurById(@PathVariable("idUtilisateur") Integer id);
 
     @GetMapping(UTILISATEUR_ENDPOINT + "/all")
-    List<UtilisateurDto> findAll();
+    List<UtilisateurDto> findAllUtilisateur();
 
     @DeleteMapping(UTILISATEUR_ENDPOINT + "/delete/{idUtilisateur}")
-    void delete(@PathVariable("idUtilisateur") Integer id);
+    void deleteUtilisateur(@PathVariable("idUtilisateur") Integer id);
 }

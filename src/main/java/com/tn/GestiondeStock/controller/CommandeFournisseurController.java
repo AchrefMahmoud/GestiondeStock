@@ -21,52 +21,52 @@ public class CommandeFournisseurController implements CommandeFournisseurApi {
     }
 
     @Override
-    public CommandeFournisseurDto save(CommandeFournisseurDto dto) {
+    public CommandeFournisseurDto saveCommandeFournisseur(CommandeFournisseurDto dto) {
         return commandeFournisseurService.save(dto);
     }
 
     @Override
-    public CommandeFournisseurDto updateEtatCommande(Integer idCommande, EtatCommande etatCommande) {
+    public CommandeFournisseurDto updateEtatCommandeFournisseur(Integer idCommande, EtatCommande etatCommande) {
         return commandeFournisseurService.updateEtatCommande(idCommande, etatCommande);
     }
 
     @Override
-    public CommandeFournisseurDto updateQuantiteCommande(Integer idCommande, Integer idLigneCommande, BigDecimal quantite) {
+    public CommandeFournisseurDto updateQuantiteCommandeFournisseur(Integer idCommande, Integer idLigneCommande, BigDecimal quantite) {
         return commandeFournisseurService.updateQuantiteCommande(idCommande, idLigneCommande, quantite);
     }
 
     @Override
-    public CommandeFournisseurDto updateFournisseur(Integer idCommande, Integer idFournisseur) {
+    public CommandeFournisseurDto updateFournisseurInCommandeFournisseur(Integer idCommande, Integer idFournisseur) {
         return commandeFournisseurService.updateFournisseur(idCommande, idFournisseur);
     }
 
     @Override
-    public CommandeFournisseurDto updateArticle(Integer idCommande, Integer idLigneCommande, Integer idArticle) {
+    public CommandeFournisseurDto updateArticleInCommandeFournisseur(Integer idCommande, Integer idLigneCommande, Integer idArticle) {
         return commandeFournisseurService.updateArticle(idCommande, idLigneCommande, idArticle);
     }
 
     @Override
-    public CommandeFournisseurDto deleteArticle(Integer idCommande, Integer idLigneCommande) {
+    public CommandeFournisseurDto deleteArticleInCommandeFournisseur(Integer idCommande, Integer idLigneCommande) {
         return commandeFournisseurService.deleteArticle(idCommande, idLigneCommande);
     }
 
     @Override
-    public CommandeFournisseurDto findById(Integer id) {
+    public CommandeFournisseurDto findCommandeFournisseurById(Integer id) {
         return commandeFournisseurService.findById(id);
     }
 
     @Override
-    public CommandeFournisseurDto findByCode(String code) {
+    public CommandeFournisseurDto findCommandeFournisseurByCode(String code) {
         return commandeFournisseurService.findByCode(code);
     }
 
     @Override
-    public List<CommandeFournisseurDto> findAll() {
+    public List<CommandeFournisseurDto> findAllCommandeFournisseur() {
         return commandeFournisseurService.findAll();
     }
 
     @Override
-    public void delete(Integer id) {
+    public void deleteCommandeFournisseur(Integer id) {
         commandeFournisseurService.delete(id);
     }
 }

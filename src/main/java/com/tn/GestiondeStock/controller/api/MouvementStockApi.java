@@ -12,7 +12,7 @@ import java.util.List;
 
 import static com.tn.GestiondeStock.utils.Constants.APP_ROOT;
 
-@Api(APP_ROOT + "/mvtstk")
+@Api("mvtstk")
 public interface MouvementStockApi {
 
     @GetMapping(APP_ROOT + "/mvtstk/stockreel/{idArticle}")
