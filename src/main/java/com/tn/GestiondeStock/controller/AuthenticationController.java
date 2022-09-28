@@ -10,15 +10,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import static com.tn.GestiondeStock.utils.Constants.AUTHENTICATION_ENDPOINT;
 
 
 @RestController
+@CrossOrigin
 @RequestMapping(AUTHENTICATION_ENDPOINT)
 
 public class AuthenticationController {

@@ -4,11 +4,13 @@ import com.tn.GestiondeStock.controller.api.EntrepriseApi;
 import com.tn.GestiondeStock.dto.EntrepriseDto;
 import com.tn.GestiondeStock.services.EntrepriseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class EntrepriseController implements EntrepriseApi {
 
     private EntrepriseService entrepriseService;

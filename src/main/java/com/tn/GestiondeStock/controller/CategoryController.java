@@ -4,11 +4,13 @@ import com.tn.GestiondeStock.controller.api.CategoryApi;
 import com.tn.GestiondeStock.dto.CategoryDto;
 import com.tn.GestiondeStock.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class CategoryController implements CategoryApi {
 
     private CategoryService categoryService;

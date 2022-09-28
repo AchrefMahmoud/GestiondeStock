@@ -4,12 +4,14 @@ import com.tn.GestiondeStock.controller.api.MouvementStockApi;
 import com.tn.GestiondeStock.dto.MouvementStockDto;
 import com.tn.GestiondeStock.services.MouvementStockService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class MouvementStockController implements MouvementStockApi {
 
     private MouvementStockService service;
