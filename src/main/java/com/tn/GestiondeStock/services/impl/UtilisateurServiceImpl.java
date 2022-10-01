@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import com.tn.GestiondeStock.dto.ChangerMotDePasseUtilisateurDto;
 import com.tn.GestiondeStock.exception.InvalidOperationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.tn.GestiondeStock.dto.UtilisateurDto;
@@ -26,10 +27,13 @@ import org.springframework.util.StringUtils;
 public class UtilisateurServiceImpl implements UtilisateurService {
 	
 	private UtilisateurRepository utilisateurRepository;
+	private PasswordEncoder passwordEncoder;
 
 	@Autowired
-	public UtilisateurServiceImpl(UtilisateurRepository utilisateurRepository) {
+	public UtilisateurServiceImpl(UtilisateurRepository utilisateurRepository, PasswordEncoder passwordEncoder) {
 		this.utilisateurRepository = utilisateurRepository;
+		this.passwordEncoder = passwordEncoder;
+
 	}
 	
 	@Override
@@ -39,7 +43,21 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 			log.error("Utilisateur is not valid", dto);
 			throw new InvalidEntityException("L'utilisateur n'est pas valide", ErrorCodes.UTILISATEUR_NOT_VALID, errors);
 		}
-		return UtilisateurDto.fromEntity(utilisateurRepository.save(UtilisateurDto.toEntity(dto)));
+
+		if (userAlreadyExistes(dto.getMail())) {
+			throw new InvalidEntityException("Une autre utilisateur avec le meme email existe deja", ErrorCodes.UTILISATEUR_ALREADY_EXIST);
+		}
+
+		dto.setMotDePasse(passwordEncoder.encode(dto.getMotDePasse()));
+
+		return UtilisateurDto.fromEntity
+				(utilisateurRepository.save
+						(UtilisateurDto.toEntity(dto)));
+	}
+
+	private boolean userAlreadyExistes(String email) {
+		Optional<Utilisateur> user = utilisateurRepository.findUtilisateurByMail(email);
+		return user.isPresent();
 	}
 	
 	@Override

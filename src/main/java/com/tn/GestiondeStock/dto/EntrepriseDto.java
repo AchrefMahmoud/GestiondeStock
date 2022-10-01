@@ -39,8 +39,7 @@ public class EntrepriseDto {
 	private String numTel;
 	
 	private String siteWeb;	
-	
-	private List<UtilisateurDto> utilisateurs;
+
 
 	public static EntrepriseDto fromEntity(Entreprise entreprise) {
 		if (entreprise == null) {
@@ -88,6 +87,7 @@ public class EntrepriseDto {
 		entreprise.setCodePostale(entrepriseDto.getCodePostale());
 		entreprise.setPays(entrepriseDto.getPays());
 		entreprise.setNumTel(entrepriseDto.getNumTel());
+		entreprise.setAdresse(entrepriseDto.getAdresse());
 
 		return entreprise;
 	}
