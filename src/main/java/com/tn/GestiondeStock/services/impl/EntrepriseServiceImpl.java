@@ -51,6 +51,10 @@ public class EntrepriseServiceImpl implements EntrepriseService {
 
 		UtilisateurDto utilisateur = fromEntreprise(savedEntreprise);
 
+		utilisateur.setEntreprise(savedEntreprise);
+
+		System.out.println(utilisateur);
+
 		UtilisateurDto saveUser = utilisateurService.save(utilisateur);
 
 		RoleDto roleDto = RoleDto.builder()
@@ -69,13 +73,13 @@ public class EntrepriseServiceImpl implements EntrepriseService {
 				.nom(dto.getNom())
 				.prenom(dto.getCodeFiscal())
 				.mail(dto.getMail())
-				.MotDePasse(generateRandomPassword())
+				.MotDePasse("password")
 				.entreprise(dto)
 				.dateDeNaissance(Instant.now())
 				.photo(dto.getPhoto())
-				.pays("pays")
-				.ville("ville")
-				.codePostale("codePostal")
+				.pays(dto.getPays())
+				.ville(dto.getVille())
+				.codePostale(dto.getCodePostale())
 				.build();
 	}
 

@@ -68,7 +68,7 @@ public class UtilisateurDto {
 				.ville(utilisateur.getVille())
 				.codePostale(utilisateur.getCodePostale())
 				.pays(utilisateur.getPays())
-//				.idEntreprise(utilisateur.getIdEntreprise())
+//				.idEntreprise(utilisateur.getEntreprise().getId())
 				.entreprise(EntrepriseDto.fromEntity(utilisateur.getEntreprise()))
 				.roles(
 						utilisateur.getRoles() != null ?
@@ -100,7 +100,7 @@ public class UtilisateurDto {
 		utilisateur.setVille(utilisateurDto.getVille());
 		utilisateur.setCodePostale(utilisateurDto.getCodePostale());
 		utilisateur.setPays(utilisateurDto.getPays());
-//		utilisateur.setIdEntreprise(utilisateurDto.getIdEntreprise());
+		utilisateur.setEntreprise(EntrepriseDto.toEntity(utilisateurDto.getEntreprise()));
 		
 		return utilisateur;
 		
