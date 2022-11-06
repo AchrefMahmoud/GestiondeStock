@@ -95,17 +95,21 @@ public class CommandeClientServiceImpl implements CommandeClientService {
 			throw new InvalidEntityException("L'article n'existe oas dans la BDD", ErrorCodes.ARTICLE_NOT_FOUND, articleErrors);
 		}
 
+		CommandeClient c = CommandeClientDto.toEntity(dto);
 		CommandeClient saveCmdClt = commandeClientRepository.save(CommandeClientDto.toEntity(dto));
 
 		if (dto.getLigneCommandeClients() != null) {
 			dto.getLigneCommandeClients().forEach(LigCmdClt -> {
 				LigneCommandeClient ligneCommandeClient = LigneCommandeClientDto.toEntity(LigCmdClt);
+				Article article = articleRepository.findById(LigCmdClt.getArticle().getId()).get();
+				ligneCommandeClient.setArticle(article);
 				ligneCommandeClient.setCommandeClient(saveCmdClt);
+				ligneCommandeClient.setIdEntreprise(dto.getIdEntreprise());
 				ligneCommandeClientRepository.save(ligneCommandeClient);
 			});
 		}
 
-		return CommandeClientDto.fromEntity(saveCmdClt);
+		return CommandeClientDto.fromEntity(c);
 	}
 
 	@Override

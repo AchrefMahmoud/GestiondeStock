@@ -62,12 +62,12 @@ public class ClientDto {
 				.codePostale(client.getCodePostale())
 				.pays(client.getPays())
 				.idEntreprise(client.getIdEntreprise())
-				.commandeClients(
-						client.getCommandeClients() != null ?
-								client.getCommandeClients().stream()
-								.map(CommandeClientDto::fromEntity)
-								.collect(Collectors.toList()) : null
-								)
+//				.commandeClients(
+//						client.getCommandeClients() != null ?
+//								client.getCommandeClients().stream()
+//								.map(CommandeClientDto::fromEntity)
+//								.collect(Collectors.toList()) : null
+//								)
 				.build();
 }
 	
@@ -80,6 +80,7 @@ public class ClientDto {
 		
 		Client client = new Client();
 		client.setId(clientDto.getId());
+		System.out.println("dto " + client.getId());
 		client.setNom(clientDto.getNom());
 		client.setPrenom(clientDto.getPrenom());
 		client.setPhoto(clientDto.getPhoto());

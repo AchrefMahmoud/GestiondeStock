@@ -57,9 +57,7 @@ public class ArticleServiceImpl implements ArticleService {
 			log.error("Article is not valid", dto);
 			throw new InvalidEntityException("L'article n'est pas valide", ErrorCodes.ARTICLE_NOT_VALID, errors);
 		}
-		return ArticleDto.fromEntity(
-				articleRepository.save(
-						ArticleDto.toEntity(dto)
+		return ArticleDto.fromEntity(articleRepository.save(ArticleDto.toEntity(dto)
 				));
 	}
 
@@ -149,7 +147,8 @@ public class ArticleServiceImpl implements ArticleService {
 			throw new InvalidOperationException("impossible de supprimer un article deja utiliser dans des commande fournisseur",
 					ErrorCodes.ARTICLE_ALREADY_IN_USE);
 		}
-		List<LigneVente> ligneVentes = venteRepository.findAllByArticleId(id);
+
+		List<LigneVente> ligneVentes = venteRepository.findAllByArticle(id);
 		if (!ligneVentes.isEmpty()) {
 			throw new InvalidOperationException("Impossible de supprimer un article deja utiliser dans des ventes",
 					ErrorCodes.ARTICLE_ALREADY_IN_USE);

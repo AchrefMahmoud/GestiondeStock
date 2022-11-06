@@ -97,10 +97,11 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
 	@Override
 	public UtilisateurDto findByMail(String mail) {
+		System.out.println(mail);
 		return utilisateurRepository.findUtilisateurByMail(mail)
 				.map(UtilisateurDto::fromEntity)
 				.orElseThrow(() -> new EntityNotFoundException(
-						"Aucun utilisateur avec l'email = " + mail + "n'ete trouve dans la BDD",
+						"Aucun utilisateur avec l'email = *" + mail + "*n'ete trouve dans la BDD",
 				ErrorCodes.UTILISATEUR_NOT_FOUND)
 		);
 	}
@@ -117,7 +118,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		}
 
 		Utilisateur utilisateur = utilisateurOptional.get();
-		utilisateur.setMotDePasse(dto.getMotDePasse());
+		utilisateur.setMotDePasse(passwordEncoder.encode(dto.getMotDePasse()));
 
 		return UtilisateurDto.fromEntity(
 				utilisateurRepository.save(utilisateur)

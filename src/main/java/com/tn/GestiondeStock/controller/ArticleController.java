@@ -72,6 +72,8 @@ public class ArticleController implements ArticleApi  {
 	public void deleteArticle(Integer id) {
 		// TODO Auto-generated method stub
 		articleService.delete(id);
+
+
 	}
 	
 	

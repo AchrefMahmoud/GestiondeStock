@@ -8,7 +8,7 @@ public interface CategoryService {
 
 	CategoryDto save(CategoryDto dto);
 	
-	CategoryDto findById(Integer id);
+	CategoryDto findById(String id);
 	
 	CategoryDto findByCodeCategory(String codeCategory);
 	

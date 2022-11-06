@@ -41,7 +41,7 @@ public interface ArticleApi {
 	})
 	ArticleDto findArticleById (@PathVariable("idArticle") Integer id);
 	
-	@GetMapping(value = APP_ROOT + "/articles/{codeArticle}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = APP_ROOT + "/articles/findByCode/{codeArticle}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value = "Rechercher un article par CODE", notes = "Cette methode permet de chercher un article par son CODE", response = ArticleDto.class)
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "L'article a ete trouver dans la BDD"),

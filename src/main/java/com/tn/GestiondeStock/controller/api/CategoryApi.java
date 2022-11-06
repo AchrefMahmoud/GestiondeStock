@@ -30,9 +30,9 @@ public interface CategoryApi {
             @ApiResponse(code = 200, message = "La categorie a ete trouver dans la BDD"),
             @ApiResponse(code = 404, message = "Aucune categorie n'existe dans la BDD avec l'ID fourni")
     })
-    CategoryDto findCategoryById(@PathVariable("idCategory") Integer idCategory);
+    CategoryDto findCategoryById(@PathVariable("idCategory") String idCategory);
 
-    @GetMapping(value = APP_ROOT + "/categories/{codeCategory}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = APP_ROOT + "/categories/findByCode/{codeCategory}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Rechercher une categorie par CODE", notes = "Cette methode permet de chercher une categories par son CODE", response = CategoryDto.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "La categorie a ete trouver dans la BDD"),

@@ -14,8 +14,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode(callSuper = true)
+@AllArgsConstructor@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "Category")
 
@@ -32,4 +31,36 @@ public class Category extends AbstractEntity {
 	
 	@OneToMany(mappedBy = "category")
 	private List<Article> articles;
+
+	public String getCodeCategory() {
+		return codeCategory;
+	}
+
+	public void setCodeCategory(String codeCategory) {
+		this.codeCategory = codeCategory;
+	}
+
+	public String getDesignation() {
+		return designation;
+	}
+
+	public void setDesignation(String designation) {
+		this.designation = designation;
+	}
+
+	public Integer getIdEntreprise() {
+		return idEntreprise;
+	}
+
+	public void setIdEntreprise(Integer idEntreprise) {
+		this.idEntreprise = idEntreprise;
+	}
+
+	public List<Article> getArticles() {
+		return articles;
+	}
+
+	public void setArticles(List<Article> articles) {
+		this.articles = articles;
+	}
 }

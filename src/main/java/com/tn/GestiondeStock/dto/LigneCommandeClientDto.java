@@ -55,7 +55,8 @@ public class LigneCommandeClientDto {
 		ligneCommandeClient.setId(ligneCommandeClientDto.getId());
 		ligneCommandeClient.setQuantite(ligneCommandeClientDto.getQuantite());
 		ligneCommandeClient.setPrixUnitaire(ligneCommandeClientDto.getPrixUnitaire());
-		ligneCommandeClient.setIdEntreprise(null);
+		ligneCommandeClient.setIdEntreprise(ligneCommandeClientDto.getIdEntreprise());
+
 
 		return ligneCommandeClient;
 	}

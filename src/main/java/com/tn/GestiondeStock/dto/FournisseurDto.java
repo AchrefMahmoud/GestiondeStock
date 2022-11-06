@@ -84,6 +84,7 @@ public class FournisseurDto {
 		fournisseur.setNumTel(fournisseurDto.getNumTel());
 		fournisseur.setAdresse(fournisseurDto.getAdresse());
 		fournisseur.setVille(fournisseurDto.getVille());
+		fournisseur.setPays(fournisseurDto.getPays());
 		fournisseur.setCodePostale(fournisseurDto.getCodePostale());
 		fournisseur.setIdEntreprise(fournisseurDto.getIdEntreprise());
 

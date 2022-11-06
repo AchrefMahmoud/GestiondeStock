@@ -48,13 +48,13 @@ public class CategoryServiceImpl implements CategoryService {
 	
 	
 	@Override
-	public CategoryDto findById(Integer id) {
+	public CategoryDto findById(String id) {
 		if (id == null) {
 			log.error("Category ID is null");
 			return null;
 		}
 		
-		Optional<Category> category = categoryRepository.findById(id); 
+		Optional<Category> category = categoryRepository.findById(Integer.parseInt(id));
 		
 		return Optional.of(CategoryDto.fromEntity(category.get())).orElseThrow(() -> 
 		new EntityNotFoundException(
@@ -96,7 +96,7 @@ public class CategoryServiceImpl implements CategoryService {
 		}
 		List<Article> articles = articleRepository.findAllByCategoryId(id);
 		if (!articles.isEmpty()) {
-			throw new InvalidOperationException("Impossible de supprimer un client qui a deja des commandes",
+			throw new InvalidOperationException("Impossible de supprimer une catégorie qui est déjâ utilisée",
 					ErrorCodes.CATEGORY_ALREADY_IN_USE);
 		}
 		categoryRepository.deleteById(id);
